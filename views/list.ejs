@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/newpg.css">
+
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+  <link href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+  <link rel="stylesheet" href="css/swiper.css">
+  <title>Travel Log</title>
+</head>
+<div class="container">
+  <div class="alerts">
+  <% if(message != '') { %> 
+    <% if(message == 'Logged in Successfully') { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><%=message%></strong>Welcome to Our Website <%=names%>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  <%}%>
+  <%}%>
+</div>
+</div>
+<body>
+
+
+  <div class="container">
+   
+    <nav class="navbar fixed-top navbar-expand-lg   navbar-dark bg-dark bg-transparent">
+      <div class="container-fluid tglr">
+        <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60">
+        
+        <a class="navbar-brand" href="#">Travel Log</a>
+        <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon btn-light"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-05 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a target="_blank" href="/review" class="nav-link" href="#">name</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Blog Section
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item" href="#">Add New Blog</a></li>
+                <li><a class="dropdown-item" href="#">Review Section</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Home ?</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><%=names%></a>
+            </li>
+           
+
+          </ul>
+          
+          <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
+              href="/login">Login </a></button>
+          <button class=" btn btn-outline-light mx-3 " type="submit"><a class="linkbtn" target="_blank"
+              href="/signup">SignUp</a></button>
+
+        </div>
+
+      </div>
+
+    </nav>
+  </div>
+ 
+  <div class="hero">
+    
+  
+    
+    <img src="/images/bg1.jpg" alt="Background" width="100%" height="100%">
+    <h1>WanderW(here)</h1>
+    <p>The internet’s source for visuals.Powered by creators everywhere.</p>
+    <form class="d-flex searchbtn" role="search">
+      <input class="form-control col-lg-4  mx-4" type="search" placeholder="Where to go?" aria-label="Search">
+      <button class="btn btn-outline-light mx-2" type="submit">Search</button>
+    </form>
+  </div>
+      
+    <!-- <section class="padd">
+      <div class="container-lg headline">
+      <h1>"Get out there and Travel"</h1>
+      <p>Best of the Best tours, attractions & activities you won't want to miss.<br>“For my part, I travel not to go anywhere, but to go. I travel for travel’s sake. The great affair is to move.”</p>
+    </div>
+    </section> -->
+
+
+  <!-- about section starts  -->
+
+  <section class="about" id="about">
+
+    <div class="video-container" data-aos="fade-right" data-aos-delay="300">
+      <video src="images/about-vid-2.mp4" muted autoplay loop class="video"></video>
+      <div class="controls">
+        <span class="control-btn" data-src="images/about-vid-1.mp4"></span>
+        <span class="control-btn" data-src="images/about-vid-2.mp4"></span>
+        <span class="control-btn" data-src="images/about-vid-3.mp4"></span>
+      </div>
+    </div>
+
+    <div class="content" data-aos="fade-left" data-aos-delay="600">
+      <span>why choose us?</span>
+      <h3>Nature's Majesty Awaits You</h3>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde fugit repellat error deserunt nam aperiam odit
+        libero quos provident. Nostrum?</p>
+      <a href="#" class="btn btn-outline-dark">Read more</a>
+    </div>
+
+  </section>
+
+
+  <!-- destination section starts  -->
+
+  <section class="destination" id="destination">
+
+    <div class="heading">
+      <span>our destination's</span>
+      <h1>make yours destination</h1>
+    </div>
+
+    <div class="box-container">
+      <% if(cards !='') {%>
+      <%cards.forEach(function(Cards, index){%>
+      <div class="box" data-aos="fade-up" data-aos-delay="150">
+        <div class="image">
+          <img src="images/<%=Cards.image%>" alt="">
+        </div>
+        <div class="content">
+          <h3><%=Cards.name%></h3>
+          <p><%=Cards.description%></p>
+          <a href="#">Read more <i class="fas fa-angle-right"></i></a>
+        </div>
+      </div>
+      <% }); %>
+      <% } %>
+
+
+    </div>
+  </section>
+
+  <!-- destination section ends -->
+  <!-- ---------Cards_-------------- -->
+  <section>
+    <div class="sec2">
+      <div class=" container my-3 mt-5" id="featureContainer">
+        <div class="row mx-auto my-auto justify-content-center">
+          <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Carousel Controls. OPTIONAL -->
+            <div class="float-end pe-md-4">
+              <a class="indicator" href="#featureCarousel" role="button" data-bs-slide="prev">
+                <!-- <i class="fa-solid fa-arrow-right"></i>
+                 -->
+                <i class="fa fa-arrow-left fa-solid"></i>
+              </a> &nbsp;&nbsp;
+              <a class="w-auto indicator" href="#featureCarousel" role="button" data-bs-slide="next">
+                <i class="fa fa-arrow-right"></i> </a>
+            </div>
+            <!-- Add Slides To The Carousel -->
+            <div class="carousel-inner" role="listbox">
+              <h1>Where to Go Right Now</h1>
+              <p>Spots at the top of travellers’ must-go lists</p>
+              <div class="carousel-item active">
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="card-img">
+                      <img src="/images/car10.jpg" class="img-fluid">
+                    </div>
+                    <div class="card-img-overlays">Green Grass</div>
+                  </div>
+                </div>
+              </div>
+            <% if(categories != ''){ %>
+                <% categories.forEach(function(Category, index){ %>
+              <div class="carousel-item">
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="card-img">
+                      <img src="/images/<%=Category.image%>" class="img-fluid">
+                    </div>
+                    <div class="card-img-overlays"><%= Category.name %></div>
+                  </div>
+                  
+                </div>
+              </div>
+              <% }); %>
+              <% } %>
+              <!-- ... more slides here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="gallery" id="gallery">
+
+    <div class="heading">
+      <span>Our Spacious gallery</span>
+      <h1>we record memories</h1>
+    </div>
+
+    <div class="box-container">
+      <%if(gallery != ''){%>
+        <%gallery.forEach(function(Gallery,index){%>
+      <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
+        <img src="images/gallery/<%=Gallery.image%>" alt="">
+        <span class="material-symbols-outlined">
+          north
+          </span>
+        <span><%= Gallery.description %></span>
+        <h3><%= Gallery.name %></h3>
+      </div>
+      <%})%>
+      <% } %>
+
+    </div>
+
+  </section>
+
+  <!-- gallery section ends -->
+
+  <!-------------------------------------------------------------- -->
+  <!-- <section id="page3">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/images/bg5.jpg" class="d-block w-100" width="100%" height="30%" alt="...">
+
+        </div>
+        <div class="carousel-item active">
+          <img src="/images/bg4.jpg" class="d-block w-100" width="40%" height="20%" alt="...">
+
+        </div>
+        <div class="carousel-item">
+          <img src="/images/bg2.jpg" class="d-block w-100" alt="..." width="100%" height="80%">
+        </div>
+        <div class="carousel-item">
+          <img src="/images/bg3.jpg" class="d-block w-100" alt="..." width="100%" height="30%">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section> -->
+
+
+
+  <!-- Latest Blog Section Begin -->
+  <section class="latest spad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title">
+            <span>Latest Blog's</span>
+            <h2>Travelling Bugger's</h2>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row">
+        <% if(blogs != '') { %>
+          <!-- <% blogs.forEach(function(Blogs,index){%> -->
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="blog__item">
+            <div class="blog__item__pic">
+              <!-- data-setbg="/images/bg2.jpg"> -->
+              <img src="/images/<%=Blogs.image%>" width="100%" alt="">
+            </div>
+            <div class="blog__item__text">
+              <span><img src="/images/calendar.png" alt=""><%=Blogs.Date%></span>
+              <h5><%=Blogs.name%></h5>
+              <!-- <a href="#">Read More</a> -->
+            </div>
+          </div>
+        </div>
+      <!-- <%});%> -->
+      <%}%>
+  </section>
+  <!-- Latest Blog Section End -->
+
+  <!-- --------------------------------------------------------------------------------------------- -->
+
+  <section class="team section">
+    <div class="container">
+      <h1 class="section-title">Our Team </h1>
+      <div class="row box">
+        <div class="col">
+          <div class="team-item">
+            <figure>
+              <img src="/images/person.jpg" alt="">
+              <figcaption>
+                <div class="info">
+                  <h3>Razzaq Shikalgar</h3>
+                  <p>Project Lead</p>
+                </div>
+                <div class="social">
+                  <a href="#" class="twitter" data-abc="true"><i class="fa fa-twitter"></i></a>
+                  <a href="#" class="facebook" data-abc="true"><i class="fa fa-facebook"></i></a>
+                  <a href="#" class="google-plus" data-abc="true"><i class="fa fa-linkedin"></i></a>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="team-item">
+            <figure>
+              <img src="/images/person.jpg" alt="">
+              <figcaption>
+                <div class="info">
+                  <h3>Mandvi Shukla</h3>
+                  <p>Backend Developer</p>
+                </div>
+                <div class="social">
+                  <a href="#" class="twitter" data-abc="true"><i class="fa fa-twitter"></i></a>
+                  <a href="#" class="facebook" data-abc="true"><i class="fa fa-facebook"></i></a>
+                  <a href="#" class="google-plus" data-abc="true"><i class="fa fa-linkedin"></i></a>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="team-item">
+            <figure>
+              <img src="/images/person.jpg" alt="">
+              <figcaption>
+                <div class="info">
+                  <h3>Samyukta Shinde</h3>
+                  <p>Designer</p>
+                </div>
+                <div class="social">
+                  <a href="#" class="twitter" data-abc="true"><i class="fa fa-twitter"></i></a>
+                  <a href="#" class="facebook" data-abc="true"><i class="fa fa-facebook"></i></a>
+                  <a href="#" class="google-plus" data-abc="true"><i class="fa fa-linkedin"></i></a>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="team-item">
+            <figure>
+              <img src="/images/person.jpg" alt="">
+              <figcaption>
+                <div class="info">
+                  <h3>Aaryan sorte</h3>
+                  <p>Back-end Developer</p>
+                </div>
+                <div class="social">
+                  <a href="#" class="twitter" data-abc="true"><i class="fa fa-twitter"></i></a>
+                  <a href="#" class="facebook" data-abc="true"><i class="fa fa-facebook"></i></a>
+                  <a href="#" class="google-plus" data-abc="true"><i class="fa fa-linkedin"></i></a>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.querySelectorAll('.about .video-container .controls .control-btn').forEach(btn => {
+      btn.onclick = () => {
+        let src = btn.getAttribute('data-src');
+        document.querySelector('.about .video-container .video').src = src;
+      }
+    });
+
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/script.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="/path/to/cdn/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+  <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+  <script src="/js/swiper-bundle.min.js"></script>
+</body>
+
+</html>
