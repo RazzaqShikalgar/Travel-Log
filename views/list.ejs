@@ -38,64 +38,66 @@
 </div>
 <body>
 
-
   <div class="container">
-   
-    <nav class="navbar fixed-top navbar-expand-lg   navbar-dark bg-dark bg-transparent">
-      <div class="container-fluid tglr">
-        <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60">
-        
-        <a class="navbar-brand" href="#">Travel Log</a>
-        <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon btn-light"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-05 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a target="_blank" href="/review" class="nav-link" href="#">name</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Blog Section
-              </a>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="#">Add New Blog</a></li>
-                <li><a class="dropdown-item" href="#">Review Section</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Home ?</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login"><%=names%></a>
-            </li>
-           
-
-          </ul>
+    <!-- bg-dark bg-transparent  -->
+   <nav class="navbar fixed-top navbar-expand-lg  navbar-light bg-light ">
+     <div class="container-fluid tglr">
+       <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60">
+       
+       <a class="navbar-brand" href="#">Travel Log</a>
+       <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
+         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+         aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon btn-light"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-05 mb-lg-0">
+           <li class="nav-item">
+             <a class="nav-link active" aria-current="page" href="#">Home</a>
+           </li>
+           <li class="nav-item">
+             <a target="_blank" href="/review" class="nav-link" href="#">name</a>
+           </li>
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+               Blog Section
+             </a>
+             <ul class="dropdown-menu ">
+               <li><a class="dropdown-item" href="#">Add New Blog</a></li>
+               <li><a class="dropdown-item" href="#">Review Section</a></li>
+               <li>
+                 <hr class="dropdown-divider">
+               </li>
+               <li><a class="dropdown-item" href="#">Home ?</a></li>
+             </ul>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/login"><%=names%></a>
+           </li>
           
-          <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
-              href="/login">Login </a></button>
-          <button class=" btn btn-outline-light mx-3 " type="submit"><a class="linkbtn" target="_blank"
-              href="/signup">SignUp</a></button>
 
+         </ul>
+         
+         <div class="cart-profile">
+          <!-- <a href="#" alt="cart" class="cart" cart-items="2"
+            ><i class="fi fi-rr-shopping-cart"></i
+          ></a> -->
+          <img src="/uploads/<%=images%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" href=""><%=names%></a>
         </div>
+         <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
+             href="/login">Login </a></button>
+         <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
+             href="/signup">SignUp</a></button>
+       </div>
 
-      </div>
+     </div>
 
-    </nav>
-  </div>
- 
-  <div class="hero">
-    
+   </nav>
+ </div>
   
-    
+ 
+  <!-- <div class="hero">
     <img src="/images/bg1.jpg" alt="Background" width="100%" height="100%">
     <h1>WanderW(here)</h1>
     <p>The internet’s source for visuals.Powered by creators everywhere.</p>
@@ -103,8 +105,31 @@
       <input class="form-control col-lg-4  mx-4" type="search" placeholder="Where to go?" aria-label="Search">
       <button class="btn btn-outline-light mx-2" type="submit">Search</button>
     </form>
-  </div>
-      
+  </div> -->
+     
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Don't Worry And<span> Travel More</span></h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Dig into our down-to-Earth budget travel guides from around the world, filled with itinerary ideas, travel tips, and recommendations for places to go.</h2>
+          <div data-aos="fade-up" data-aos-delay="600">
+            <div class="text-center text-lg-start">
+              <a href="#about" class=" btn btn-primary btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Start Exlporing</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+          <img src="/images/poster2.2.png" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
     <!-- <section class="padd">
       <div class="container-lg headline">
       <h1>"Get out there and Travel"</h1>
@@ -131,7 +156,7 @@
       <h3>Nature's Majesty Awaits You</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde fugit repellat error deserunt nam aperiam odit
         libero quos provident. Nostrum?</p>
-      <a href="#" class="btn btn-outline-dark">Read more</a>
+      <a href="#" class="btn btns btn-outline-dark">Read more</a>
     </div>
 
   </section>
@@ -229,6 +254,7 @@
     </div>
 
     <div class="box-container">
+      <!-- <span id="more"> -->
       <%if(gallery != ''){%>
         <%gallery.forEach(function(Gallery,index){%>
       <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
@@ -241,8 +267,9 @@
       </div>
       <%})%>
       <% } %>
-
+    <!-- </span> -->
     </div>
+    <button class="button-55" role="button" onclick="myFunction()" id="myBtn">Read More</button>
 
   </section>
 
@@ -414,7 +441,23 @@
     crossorigin="anonymous"></script>
   <script src="/js/index.js"></script>
   <script src="/js/script.js"></script>
+<script>
+  function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
 
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="/path/to/cdn/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>

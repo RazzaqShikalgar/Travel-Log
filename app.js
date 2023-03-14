@@ -4,9 +4,10 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
-const session = require('express-session');
+// const session = require('express-session');
 // const models = require()
 const routes = require('./routes/routes.js');
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const encrypt = require("mongoose-encryption");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -31,14 +32,14 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-app.use(session({
-  secret: "Our Little Secret.",
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(cookieParser());
+// app.use(session({
+//   secret: "Our Little Secret.",
+//   resave: false,
+//   saveUninitialized: false
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 // mongoose.set("useCreateIndex", true);
@@ -71,9 +72,9 @@ app.use(routes);
 // });
 // --------------------------------------------------
 // session
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 // session
 app.listen(3000 , function() {
   console.log("Server started on port 3000.");

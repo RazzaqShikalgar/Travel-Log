@@ -77,9 +77,9 @@
     <!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
  
 
-    <div class="container right-panel-active" id="container">
+    <div class="container right-panel-active"  id="container">
       <div class="form-container sign-up-container">
-        <form action="/signup" method="post">
+        <form action="/signup" enctype="multipart/form-data" method="post">
           <h1>Create Account</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
@@ -91,17 +91,14 @@
           <input name="email" type="email" placeholder="Email" />
           <input name="phone" type="number" placeholder="number" />
           <input name="password" type="password" placeholder="Password" />
-          <input
-            name="cpassword"
-            type="password"
-            placeholder="Confirm password"
-          />
+          <input name="cpassword" type="password" placeholder="Confirm password" />
+          <input name="image" type="file" />
           <button>Sign Up</button>
         </form>
       </div>
 
       <div class="form-container sign-in-container">
-        <form action="/login" method="POST">
+        <form action="/" method="POST">
           <h1>Sign in</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
