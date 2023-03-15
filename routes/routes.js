@@ -60,10 +60,11 @@ var upload = multer({
 
 route.get('/',check,async(req,res) => {
   // const name="here";
-  const categories = await Category.find({}).limit(8);
-  const blogs = await Blogs.find({}).limit(3);
+  const categories = await Category.find({}).limit(25);
+  const blogs = await Blogs.find({}).limit(6);
   const cards = await Cards.find({}).limit(4);
   const gallery = await Gallery.find({}).limit(20);
+
   res.render("list",{message:'',names:req.data.name,images:req.data.image,categories,blogs,cards,gallery});
   // console.log(categories);
 
@@ -96,6 +97,30 @@ route.get('/',check,async(req,res) => {
  });
  route.get("/review",function(req,res){
   res.render("card");
+ });
+ route.get("/imageupload",function(req,res){
+  res.render("imageform",{message:''});
+ });
+
+ route.post('/imageupload',upload,async(req,res)=>{
+  const namee=req.body.namee;
+  const description =  req.body.description;
+  const image = req.file.filename;
+  const newImage = await Gallery({namee,description,image});
+  newImage.save();
+  return res.render('Imageform',{message:"Document Added Successfully"});
+ });
+ route.get("/categoryupload",function(req,res){
+  res.render("categoryform",{message:''});
+ });
+
+ route.post('/categoryupload',upload,async(req,res)=>{
+  const namee=req.body.namee;
+  // const description =  req.body.description;
+  const image = req.file.filename;
+  const newImage = await Category({namee,image});
+  newImage.save();
+  return res.render('categoryform',{message:"Document Added Successfully"});
  });
 //  route.get("/",function(req,res){
 //   const name = "here";
@@ -239,8 +264,9 @@ route.post("/login", async function(req,res){
           // console.log(foundUser.image);
         //  return res.redirect("/");
         const email = foundUser.email;
+        // ,{ message: "Logged in Successfully",blogs:blogs,names:'',images:'',cards:cards,categories:categories,gallery:gallery });
         const token = jwt.sign({ email },JWT_SECRET,{expiresIn:"2h"});
-        return res.cookie('jwtToken',token,{expires:new Date(Date.now() + 25892000000),httpOnly:true}).render("list",{ message: "Logged in Successfully",blogs:blogs,names:'',images:'',cards:cards,categories:categories,gallery:gallery });
+        return res.cookie('jwtToken',token,{expires:new Date(Date.now() + 25892000000),httpOnly:true}).redirect("/");
         //  return res.cookie("list",{message:'Logged in Successfully',blogs:blogs,names:foundUser.name,images:foundUser.image,cards:cards,categories:categories,gallery:gallery});
        
           // return res.render("register",{message:'Hey !! ' + foundUser.name + ' Welcome to Our Website',});

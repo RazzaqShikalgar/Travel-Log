@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const categorySchema =  new mongoose.Schema({
-name:{
+namee:{
     type:String,
-    required:'This field is required'
+    // required:'This field is required'
 },
 image:{
     type:String,
-    required:'This field is required'
+    // required:'This field is required'
 },
 });
 
