@@ -1,92 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    
-    <link rel="stylesheet" type="text/css" target="_blank" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
-    />
-  </head>
-  <body>
-    
-<div class="container">
-    <!-- bg-dark bg-transparent  -->
-   <nav class="navbar fixed-top navbar-expand-lg  navbar-light bg-light ">
-     <div class="container-fluid tglr">
-       <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60">
-       
-       <a class="navbar-brand" href="#">Travel Log</a>
-       <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
-         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-         aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon btn-light"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul class="navbar-nav me-auto mb-05 mb-lg-0">
-           <li class="nav-item">
-             <a class="nav-link active" aria-current="page" href="#">Home</a>
-           </li>
-           <li class="nav-item">
-             <a target="_blank" href="/review" class="nav-link" href="#">name</a>
-           </li>
-           <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">
-               Blog Section
-             </a>
-             <ul class="dropdown-menu ">
-               <li><a class="dropdown-item" href="#">Add New Blog</a></li>
-               <li><a class="dropdown-item" href="#">Review Section</a></li>
-               <li>
-                 <hr class="dropdown-divider">
-               </li>
-               <li><a class="dropdown-item" href="#">Home ?</a></li>
-             </ul>
-           </li>
-           <li class="nav-item">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg   navbar-light bg-light ">
+
+      <div class="container-fluid tglr">
+        <!-- <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60"> -->
+        <!-- <a class="navbar-brand mx-2 logo" href="#">Travel Log</a> -->
+        <div>
+          <img class="navbar-brand mx-2 " width="250" height="55" src="/images/logonew.jpg" alt="">
+        </div>
+
+        <div>
+        <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon btn-light"></span>
+        </button>
+        <div class="collapse navbar-collapse fonts "  id="navbarSupportedContent">
+          <ul class="navbar-nav navbar-center  me-auto mb-05 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a target="_blank" href="/review" class="nav-link" href="#">Blog</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Blog Section
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item" href="#">Add New Blog</a></li>
+                <li><a class="dropdown-item" href="/categoryupload">Add New Category</a></li>
+                <li><a class="dropdown-item" href="/imageupload">Add New Image in Gallery</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/">Home ?</a></li>
+              </ul>
+            </li>
+            <!-- <li class="nav-item">
              <a class="nav-link" href="/login"><%=names%></a>
-           </li>
-          
+           </li> -->
 
-         </ul>
-         
-         <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
-             href="/login">Login </a></button>
-         <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
-             href="/signup">SignUp</a></button>
 
-       </div>
+          </ul>
 
-     </div>
+          <div class="cart-profile">
+            <!-- <a href="#" alt="cart" class="cart" cart-items="2"
+            ><i class="fi fi-rr-shopping-cart"></i
+          ></a> -->
+            <img src="/uploads/<%=images%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" target="_blank" href="/profile"><%=names%>
+            </a>
+          </div>
+          <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
+              href="/login">Login </a></button>
+          <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
+              href="/logout">Logout</a></button>
+        </div>
 
-   </nav>
- </div>
-    <!-- <script>
-const mobileNav = document.querySelector(".hamburger");
-const navbar = document.querySelector(".menubar");
-const dropdown = document.querySelector(".dropdown");
-const dropdownBtn = document.querySelector(".dropdown-btn");
+      </div>
 
-const toggleNav = () => {
-  navbar.classList.toggle("active");
-  mobileNav.classList.toggle("hamburger-active");
-};
-mobileNav.addEventListener("click", () => toggleNav());
+      </div>
 
-const toggleDrop = () => {
-  dropdown.classList.toggle("active-dropdown");
-  dropdownBtn.classList.toggle("dropdown-btn-active");
-};
-dropdownBtn.addEventListener("click", () => toggleDrop());
+    </nav>
+  </div>
 
-    </script> -->
-  </body>
+</body>
 </html>

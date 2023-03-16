@@ -71,3 +71,10 @@ document.querySelectorAll('.about .video-container .controls .control-btn').forE
     var bg = $(this).data('setbg');
     $(this).css('background-image', 'url(' + bg + ')');
 });
+
+
+
+
+
+
+    

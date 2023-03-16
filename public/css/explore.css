@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: 'Lato', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
+    /*font-family: 'Abel', sans-serif;
+    font-family: 'DynaPuff', cursive;
+    font-family: 'Metamorphous', cursive;
+    font-family: 'Supermercado One', cursive;*/
+}
+/* .navbar a{
+    font-size: 1.2rem;
+  } */
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+
+/*Navbar Start*/
+/* #navbar{
+    background: #000000;
+}
+#logo{
+    font-size: 36px;
+    font-weight: 550;
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 1px 1px rgb(83, 0, 89);
+    margin-bottom: 3px;
+}
+#logo span{
+    color: #e24fff;
+}
+.navbar-toggler span{
+    color: #e24fff;
+}
+.navbar-nav{
+    margin-left: 20px;
+}
+.nav-item .nav-link{
+    font-size: 16px;
+    font-weight: 550;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+    border-radius: 3px;
+    transition: 0.5s ease;
+}
+.nav-item .nav-link:hover{
+    background: #ad00cf;
+    color: rgb(0, 0, 0);
+} */
+/*Navbar End*/
+
+
+/*Home Section Start*/
+.home{
+    width: 100%;
+    height: 40vh;
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(/images/explore/welcomeworld.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.home .content{
+    text-align: center;
+    padding-top: 80px;
+}
+.home .content h5{
+    color: aliceblue;
+    font-size: 30px;
+    font-weight: 500;
+    text-shadow: 0px 1px 1px black;
+}
+.home .content h1{
+    color: aliceblue;
+    font-size: 60px;
+    font-weight: 600;
+    text-shadow: 0px 1px 1px black;
+    margin-top: 10px;
+}
+.changecontent::after{
+    content: ' ';
+    color:#000000;
+    text-shadow: 0px 1px 2px rgb(255, 255, 255);
+    animation: changetext 10s infinite linear;
+}
+@keyframes changetext{
+    0%{content: "France";}
+    10%{content: "Spain";}
+    20%{content: "United States";}
+    30%{content: "China";}
+    40%{content: "India";}
+    50%{content: "Pakistan";}
+    60%{content: "Italy";}
+    70%{content: "Turkey";}
+    80%{content: "Mexico";}
+    90%{content: "Germany";}
+    100%{content: "United Kingedom";}
+}
+
+/*Home Section End*/
+
+
+/*Section References Start*/
+.main-txt h1{
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+    text-shadow: 0px 1px 1px black;
+}
+.main-txt h1 span{
+    color:#ad00cf
+}
+.references .card{
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgb(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.references .card img{
+    border-radius: 5px;
+}
+.references .card .card-body{
+    background: transparent;
+}
+.references .card .card-body h3{
+    font-size: 25px;
+    font-weight: 600;
+}
+.references .card .card-body p{
+    font-size: 15px;
+}
+.references .card .card-body h6{
+    font-size: 20px;
+}
+.checked{
+    color: #ffa500;
+}
+.star i{
+    font-size: 15px;
+}
+
+/*Section References End*/
+
+
+
+/*Section Add Content Start*/
+.addcontent{
+    background: #f9f9f9;
+    padding: 50px;
+}
+.main-text h1{
+    text-align: centre;
+    text-shadow: 0px 1px 1px black;
+    font-weight: 600;
+}
+.main-text h1 span{
+    color: #ad00cf;
+}
+.addcontent .card{
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+.addcontent .row{
+    margin-top: 30px;
+}
+.addcontent form input{
+    padding: 7px;
+    color: #000000;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -6px black;
+}
+.addcontent form textarea{
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    box-shadow: 0px 5px 5px -6px black;
+    height: 200px;
+}
+.addcontent .submit{
+    width: 200px;
+    font-size: 16px;
+    font-weight: 550;
+    background: #ad00cf;
+    color: #f9f9f9;
+    margin-top: 10px;
+    transition: 0.5s;
+}
+.addcontent .submit:hover{
+    width: 240px;
+}
+
+/*Section Add Content End*/
+
+
+/*Section Services Start*/
+.services{
+    background: #f9f9f900;
+    margin-top: 50px;
+}
+.services h1{
+    padding-left: 550px;
+}
+.services .card{
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.services .card i{
+    font-size: 80px;
+    text-align: center;
+    color: #ad00cf;
+    margin-top: 20px;
+}
+.services .card .card-body h3{
+    font-weight: 600;
+}
+.services .card .card-body{
+    text-align: center;
+}
+
+/*Section Services End*/
+
+

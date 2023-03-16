@@ -101,6 +101,17 @@ route.get('/',check,async(req,res) => {
  route.get("/imageupload",function(req,res){
   res.render("imageform",{message:''});
  });
+ route.get("/explore",check,function(req,res){
+  res.render("explore",{names:req.data.name,images:req.data.image});
+ });
+ route.get("/blog",check,function(req,res){
+  res.render("blog",{names:req.data.name,images:req.data.image});
+ });
+ route.get("/profile",check,function(req,res){
+  const email = req.data.email;
+  const number = req.data.phone;
+  res.render("profile",{names:req.data.name,images:req.data.image,email,number});
+ });
 
  route.post('/imageupload',upload,async(req,res)=>{
   const namee=req.body.namee;
@@ -202,7 +213,7 @@ else{
     // Checking user exists or not
     const userExist = await User.findOne({ email });
     if (userExist) {
-      return res.render('register',{ message: "mail registred"});
+      return res.render('register',{ message: "mail already registred"});
     }
     // At the end creating a new user
     const token = jwt.sign({ email },JWT_SECRET,{expiresIn : "2h"});
@@ -242,7 +253,13 @@ async function check (req,res,next){
     }
 }
 
+// route.get('/logout',check,function(req,res){
+//   req.user.deleteToken(req.token,(err,user)=>{
+//       if(err) return res.status(400).send(err);
+//       res.sendStatus(200);
+//   });
 
+// }); 
 
 //Login Page
 route.post("/login", async function(req,res){

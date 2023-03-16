@@ -8,14 +8,14 @@
   .heading span {
     margin:10px;
     font-family: 'Gloock', serif ;
-    color: #f4f2f2;
+    color: white;
     font-size: 4rem;
   }
   
   .heading h1 {
     font-size: 4rem;
     margin:10px;
-    color: antiquewhite;
+    color: whitesmoke;
   }
 
 /* * {
@@ -48,7 +48,7 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: #eb0808;
+  background: #eb08e0;
   border-radius: 5rem;
 }
 
@@ -819,14 +819,17 @@ html::-webkit-scrollbar-thumb {
   
   .destination .box-container .box {
     border-radius: 1rem;
+    -webkit-box-shadow: 8px -6px 7px -1px rgba(41,1,41,0.46);
+    -moz-box-shadow: 8px -6px 7px -1px rgba(41,1,41,0.46);
+    box-shadow: 8px -6px 7px -1px rgba(41,1,41,0.46);
     overflow: hidden;
     margin-bottom: 20px;
-    background: #222;
+    background: #000000;
   }
   
   .destination .box-container .box:hover img {
     -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    transform: scale(1.1);
   }
   
   .destination .box-container .box .image {
@@ -855,13 +858,13 @@ html::-webkit-scrollbar-thumb {
   .destination .box-container .box .content p {
     padding: 1rem 0;
     font-size: 1.4rem;
-    color: #aaa;
+    color: whitesmoke;
     line-height: 2;
   }
   
   .destination .box-container .box .content a {
     font-size: 1.7rem;
-    color: #29d9d5;
+    color: whitesmoke;
     text-decoration: none;
   }
   
@@ -872,7 +875,7 @@ html::-webkit-scrollbar-thumb {
   .destination .box-container .box .content a i {
     padding-left: .5rem;
   }
-  #gallery, #destination{
+  #gallery{
     background-color: rgb(0, 0, 0);
     padding:1rem 9%;
   }

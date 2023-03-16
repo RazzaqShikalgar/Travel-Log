@@ -77,3 +77,7 @@ body {
     display: none;
   }
 }
+
+#gallery, #destination{
+  background-color: white;
+}

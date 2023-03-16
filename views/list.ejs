@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/nav.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Open+Sans:wght@500&family=Water+Brush&display=swap" rel="stylesheet">
@@ -14,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="/images/favicon1.jpg" type="image/x-icon">
   <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/newpg.css">
@@ -44,75 +47,29 @@
 </div>
 
 <body>
+  <!-- <div class="center-body">
+    <div class="loader-ball-12">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    </div> -->
+  <!-- <div class="loader">
+    <div class="wait"> Veuillez patienter svp</div>
+    <div class="iata_code departure_city">Travel</div>
+    <div class="plane">
+      <img src="https://zupimages.net/up/19/34/4820.gif" class="plane-img">
+    </div>
+    <div class="earth-wrapper">
+      <div class="earth"></div>
+    </div>  
+    <div class="iata_code arrival_city">Log</div>
+  </div> -->
 
-  <div class="container">
-    <!-- bg-dark bg-transparent  -->
-    <nav class="navbar fixed-top navbar-expand-lg   navbar-light bg-light ">
-
-      <div class="container-fluid tglr">
-        <!-- <img class="mx-2 logo" src="/images/person.jpg" alt="Bootstrap" width="60" height="60"> -->
-        <!-- <a class="navbar-brand mx-2 logo" href="#">Travel Log</a> -->
-        <div>
-          <img class="navbar-brand mx-2 " width="270" height="55" src="/images/logonew.jpg" alt="">
-        </div>
-
-        <div>
-
-       
-        <button class="navbar-toggler  navbar-toggle x collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon btn-light"></span>
-        </button>
-        <div class="collapse navbar-collapse fonts "  id="navbarSupportedContent">
-          <ul class="navbar-nav navbar-center  me-auto mb-05 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a target="_blank" href="/review" class="nav-link" href="#">Blog</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Blog Section
-              </a>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="#">Add New Blog</a></li>
-                <li><a class="dropdown-item" href="/categoryupload">Add New Category</a></li>
-                <li><a class="dropdown-item" href="/imageupload">Add New Image in Gallery</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Home ?</a></li>
-              </ul>
-            </li>
-            <!-- <li class="nav-item">
-             <a class="nav-link" href="/login"><%=names%></a>
-           </li> -->
-
-
-          </ul>
-
-          <div class="cart-profile">
-            <!-- <a href="#" alt="cart" class="cart" cart-items="2"
-            ><i class="fi fi-rr-shopping-cart"></i
-          ></a> -->
-            <img src="/uploads/<%=images%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" href=""><%=names%>
-            </a>
-          </div>
-          <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
-              href="/login">Login </a></button>
-          <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
-              href="/signup">SignUp</a></button>
-        </div>
-
-      </div>
-
-      </div>
-
-    </nav>
-  </div>
+ <%-include('partials/header');-%>
 
 
   <!-- <div class="hero">
@@ -134,7 +91,7 @@
             world, filled with itinerary ideas, travel tips, and recommendations for places to go.</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
-              <a href="#about" data-aos="fade-up-right"
+              <a href="/explore" target="_blank" data-aos="fade-up-right"
                 class=" btn btn-primary btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Start Exlporing</span>
                 <i class="bi bi-arrow-right"></i>
@@ -186,7 +143,7 @@
 
   <section class="destination" id="destination">
 
-    <div class="heading font">
+    <div class="headings font">
       <h1>our destination's</h1>
       <span>make yours destination</span>
     </div>
@@ -196,7 +153,7 @@
         <%cards.forEach(function(Cards, index){%>
           <div class="box" data-aos="fade-up" data-aos-delay="150">
             <div class="image">
-              <img  data-aos="fade-up-right" src="/images/<%=Cards.image%>" alt="">
+              <img  data-aos="fade-up-right" src="/images/<%=Cards.image%>" alt="<%=Cards.name%>">
             </div>
             <div class="content">
               <h3  data-aos="fade-up-left" data-aos-delay="600">
@@ -365,9 +322,8 @@
                 <span><img src="/images/calendar.png" alt="">
                   <%=Blogs.Date%>
                 </span>
-                <h5>
-                  <%=Blogs.name%>
-                </h5>
+               <a href="/blog" target="_blank"><%=Blogs.name%></a> 
+               <h5></h5>
                 <!-- <a href="#">Read More</a> -->
               </div>
             </div>
@@ -395,7 +351,7 @@
         <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="single-person">
             <div class="person-image">
-              <img src="/images/person.jpg" alt="">
+              <img src="/images/razzaq.jpg" alt="">
               <span class="icon">
                 <i class="fab fa-html5"></i>
               </span>
@@ -411,9 +367,9 @@
         <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="single-person">
             <div class="person-image">
-              <img src="https://i.ibb.co/nbpNr4r/person2.jpg" alt="">
+              <img src="/images/mandvi.jfif" alt="">
               <span class="icon">
-                <i class="fab fa-wordpress-simple"></i>
+                <i class="fab fa-js"></i>
               </span>
             </div>
             <div class="person-info">
@@ -427,9 +383,9 @@
         <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="single-person">
             <div class="person-image">
-              <img src="https://i.ibb.co/25zdRMr/person3.jpg" alt="">
+              <img src="/images/samyukta.jfif" alt="">
               <span class="icon">
-                <i class="fab fa-angular"></i>
+                <i class="fab fa-google-plus-g"></i>
               </span>
             </div>
             <div class="person-info">
@@ -443,7 +399,7 @@
         <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="single-person">
             <div class="person-image">
-              <img src="https://i.ibb.co/w0ynr2Q/person4.jpg" alt="">
+              <img src="/images/Aaryan.jfif" alt="">
               <span class="icon">
                 <i class="fab fa-js"></i>
               </span>
@@ -537,6 +493,7 @@
       </div>
     </div>
   </section> -->
+  <%-include('partials/footer');-%>
   <script>
     document.querySelectorAll('.about .video-container .controls .control-btn').forEach(btn => {
       btn.onclick = () => {
