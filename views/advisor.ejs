@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Advisor Website</title>
+  <meta name="description" content="Visitez la blus belle capitale du monde !" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="HTML, CSS, JavaScript" />
+  <meta name="author" content="Charles-Antoine Dupuy" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/fonts.css" />
+  <link rel="stylesheet" href="/assets/css/font-icons.css" />
+  <link rel="stylesheet" href="/css/advisor.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+
+<body class="body">
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- ---------- HEADER ---------- -->
+  <header>
+    <div class="container">
+      <div>
+        <i class="icon-menu_bars"></i>
+        <img src="/assets/img/logo.svg" alt="description" />
+        <i class="icon-search"></i>
+      </div>
+      <nav>
+        <div>
+          <i class="icon-plus_c"></i>
+          <p>Publish</p>
+        </div>
+        <div>
+          <i class="icon-notification_bell"></i>
+          <p>Alerts</p>
+        </div>
+        <div>
+          <i class="icon-heart"></i>
+          <p>Voyages</p>
+        </div>
+
+        <button id="openForm">Connect-us</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ---------- MAIN ---------- -->
+  <main>
+    <div class="container">
+      <section>
+        <h1><span class="title">Explore </span><%=place%></h1>
+        <nav>
+          <div>
+            <p>Destination</p>
+            <i class="icon-destination"></i>
+          </div>
+          <div>
+            <p>Hotels</p>
+            <i class="icon-hotels"></i>
+          </div>
+          <div>
+            <p> vacation Location</p>
+            <i class="icon-vacation_rentals"></i>
+          </div>
+          <div>
+            <p>Activités</p>
+            <i class="icon-attractions"></i>
+          </div>
+          <div>
+            <p>Restaurants</p>
+            <i class="icon-restaurants"></i>
+          </div>
+          <div>
+            <p>Travel Forums </p>
+            <i class="icon-forums"></i>
+          </div>
+          <div>
+            <p>More</p>
+            <i class="icon-flights"></i>
+          </div>
+          <div>
+            <p>Plus</p>
+            <i class="icon-more_horizontal"></i>
+          </div>
+        </nav>
+      </section>
+
+      <section class="pictures">
+        <div>
+        
+          <img class="left-image" src="<%=location.result_object.photo.images.original.url%>" />
+     
+          <a href=""><i class="icon-photo"></i>All the Photos</a>
+        </div>
+        <div>
+          
+          <% if(freeimages !== undefined ){ %>
+            <% freeimages.some(function(freeimages, index){ %>
+            <% if(index !== 2) {%> 
+                <img class="right-image-1" src="<%=freeimages.image%>" alt="description" />
+                <% } else{ %>
+                  <% return true; } %>
+            <% }); %>
+            <% } %>
+        </div>
+      </section>
+      <nav class="menu">
+        <p>
+          <span>Europe</span> > <span>France</span> >
+          <span>île-de-France</span> >
+          <span><%=location.result_object.name%></span>
+          <i class="icon-caret_down"></i>
+        </p>
+        <p>Visiter : <%=location.result_object.location_string%> </p>
+      </nav>
+
+      <section class="description">
+        <div>
+          <h2>La Ville Lumière éblouit en tous points</h2>
+          <p>
+          <%=location.result_object.description%>
+          </p>
+        </div>
+        <div>
+          <div>
+            <h2>Start Planning <%=location.result_object.name%></h2>
+            <p>
+              Create a trip to save and organize all your ideas and visualize them on a map
+            </p>
+            <form action="/planner" method="POST">
+            <div class="input-group rounded">
+              <input type="text" name="days" class="form-control rounded" placeholder="No Of Days" aria-label="Search" aria-describedby="search-addon" />
+              <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+            <div class="input-group rounded">
+              <input type="text" name="location" class="form-control rounded" placeholder="Location" aria-label="Search" aria-describedby="search-addon" />
+              <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+          </div>
+          <img src="/assets/img/card.png" alt="description" />
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ---------- SECTION 1 ---------- -->
+
+  <section class="section-1">
+    <div class="section-title">
+      <div class="border-section-left"></div>
+      <h2>Conseils de voyage</h2>
+      <div class="border-section-right"></div>
+    </div>
+
+    <p class="view-all">Tout afficher</p>
+
+    <div class="advice-cards">
+      <div>
+        <img src="/assets/img/icone-1.svg" alt="icone 1" />
+        <p>Meilleure période pour visiter</p>
+      </div>
+      <div>
+        <img src="/assets/img/icone-2.svg" alt="icone 2" />
+        <p>Se déplacer</p>
+      </div>
+      <div>
+        <img src="/assets/img/icone-3.svg" alt="icone 3" />
+        <p>Coutumes locales</p>
+      </div>
+      <div>
+        <img src="/assets/img/icone-4.svg" alt="icone 4" />
+        <p>Conseils de pros</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 2 ---------- -->
+
+  <section class="section-2">
+    <div class="container">
+      <div class="section-title">
+        <div class="border-section-left"></div>
+        <h2>Immanquable à Paris</h2>
+        <div class="border-section-right"></div>
+      </div>
+      <div class="carrousel">
+        <div>
+          <h3>Special Attraction</h3>
+          <p class="description">
+            Things we can do visit whenever we come to that location
+          </p>
+          <p class="view-all-cards">Read More</p>
+        </div>
+        <% if(attraction !== undefined ){ %>
+          <% attraction.forEach(function(attraction, index){ %>
+        <div>
+          <div class="carrousel-images">
+            <% if (attraction.photo !== undefined) {%>
+              <a href="/location/detail/<%=attraction.photo.id%>">  <img src="<%=attraction.photo.images.original.url%>" alt="George V"/></a>
+            <% } %>
+            <div class="favorite"></div>
+            <i class="icon-arrow_right"></i>
+          </div>
+          <h4><%=attraction.name%></h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p><%=attraction.num_reviews%></p>
+          </div>
+        </div>
+        <% }); %>
+        <% } %>
+      </div>
+      <!-- Hotels Section -->
+      <div class="carrousel">
+        <div>
+          <h3>Hotels</h3>
+          <p class="description">
+            Things we can do visit whenever we come to that location
+          </p>
+          <p class="view-all-cards">Read More</p>
+        </div>
+        <div>
+          <% if(lodging !== undefined){ %>
+            <% lodging.forEach(function(lodging, index){ %>
+              <% if(lodging.result_type === 'lodging'){ %>
+              <div class="carrousel-images"> 
+               <% if (lodging.result_object.photo !== undefined) {%>
+                <a href="/location/detail"><img src="<%=lodging.result_object.photo.images.medium.url%>" alt="<%=lodging.name%>" /></a>
+                <% } %>
+              </div>
+              <div class="favorite"></div>
+              <h4>
+                <%=lodging.result_object.name%>
+              </h4>
+              <div class="carrousel-reviews">
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <p>
+                  <%=lodging.result_object.num_reviews%>
+                </p>
+              </div>
+              <p class="item-description">
+                • Française, Européenne, Moderne
+              </p>
+        </div>
+        <div>
+          <% } %>
+          <% }); %>
+            <% } %>
+
+        </div>
+      </div>
+      <div class="carrousel">
+        <div>
+          <h3>Restro</h3>
+          <p class="description">
+            Bistrots et bars typiques, et plus encore à Paris.
+          </p>
+          <p class="view-all-cards">Read More</p>
+        </div>
+        <div>
+          <% if(hotels !== undefined ){ %>
+            <% hotels.forEach(function(hotels, index){ %>
+              <div class="carrousel-images"> 
+               <% if (hotels.photo !== undefined) {%>
+                <a href="/hotel/detail/<%=hotels.location_id%>"><img src="<%=hotels.photo.images.medium.url%>" alt="<%=hotels.name%>" /></a>
+                <% } %>
+              </div>
+              <div class="favorite"></div>
+              <h4>
+                <%=hotels.name%>
+              </h4>
+              <div class="carrousel-reviews">
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <i class="icon-bubble_rating_full_refresh"></i>
+                <p>
+                  <%=hotels.ranking%>
+                </p>
+              </div>
+              <p class="item-description">
+                • Française, Européenne, Moderne
+              </p>
+        </div>
+        <div>
+          <% }); %>
+            <% } %>
+
+        </div>
+      </div>
+  </section>
+
+  <!-- ---------- SECTION 3 ---------- -->
+
+  <section class="section-3">
+    <div class="container">
+      <div class="section-title">
+        <div class="border-section-left"></div>
+        <h2>Guides de voyageurs</h2>
+        <div class="border-section-right"></div>
+      </div>
+
+      <div class="guide-articles">
+        <div>
+          <img src="/assets/img/musee-de-montmartre.jpg" alt="description" />
+          <img src="/assets/img/eatwith.jpg" alt="description" />
+          <div>
+            <p class="author-guide">Par Eatwith</p>
+            <h4>Best summer things to do in Paris | Eatwith</h4>
+            <p class="guide-description">
+              Eatwith host Elodie is a private tour guide in Paris, offering
+              all sorts of tours for small groups, from fashion to food...
+            </p>
+            <i class="icon-heart_fill"></i>
+            <p class="articles-number">36 articles</p>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/img/paris.jpg" alt="description" />
+          <img src="/assets/img/gabigabtravel.jpg" alt="description" />
+          <div>
+            <p class="author-guide">Par gabigabtravel</p>
+            <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
+            <p class="guide-description">
+              Avec : Les Catacombes De Paris, Parc Montsouris, Le Tournesol
+              cafe, Fondation Cartier pour l'art contemporain, Gare ...
+            </p>
+            <i class="icon-heart_fill"></i>
+            <p class="articles-number">125 articles</p>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/img/catacombes.jpg" alt="description" />
+
+          <img src="/assets/img/topito-com.jpg" alt="description" />
+          <div>
+            <p class="author-guide">Par Topito</p>
+            <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
+            <p class="guide-description">
+              Avec : Les Catacombes De Paris, Parc Montsouris, Le Tournesol
+              cafe, Fondation Cartier pour l'art contemporain, Gare ...
+            </p>
+            <i class="icon-heart_fill"></i>
+            <p class="articles-number">10 articles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 4 ---------- -->
+
+  <section class="section-4">
+    <div class="container">
+      <img src="/assets/img/forum.svg" alt="description" />
+      <div class="section-title">
+        <div class="border-section-left"></div>
+        <h2>Dans les forums</h2>
+        <div class="border-section-right"></div>
+      </div>
+      <p class="view-all">Tout afficher</p>
+
+      <div class="forum-articles">
+        <div>
+          <h4>Week end parisien en amoureux</h4>
+          <div>
+            <img src="/assets/img/mylene.jpg" alt="Avatar" />
+            <p>
+              Par <span class="user">Mylène K</span> •
+              <span class="answers">9 réponses</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h4>Conseils 3 jours a Paris en famille oct 2020</h4>
+          <div>
+            <img src="/assets/img/elise.jpg" alt="Avatar" />
+            <p>
+              Par <span class="user">Elise M</span> •
+              <span class="answers">5 réponses</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h4>Transport entre Paris et Charles de Gaulle</h4>
+          <div>
+            <img src="/assets/img/marc.jpg" alt="Avatar" />
+            <p>
+              Par <span class="user">Marc G</span> •
+              <span class="answers">7 réponses</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 5 ---------- -->
+
+  <section class="section-5">
+    <div class="container">
+      <div class="section-title">
+        <div class="border-section-left"></div>
+        <h2>Plus de choix à Paris</h2>
+        <div class="border-section-right"></div>
+      </div>
+
+      <h3 class="title">Bars</h3>
+
+      <div class="carrousel">
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/frog-hop-house.jpg" alt="Verjus" />
+          </div>
+          <div class="favorite"></div>
+
+          <h4>Verjus</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">
+            €€€€ • Française, Européenne, Moderne
+          </p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/assiette-degustation.jpg" alt="Verjus" />
+          </div>
+          <div class="favorite"></div>
+
+          <h4>Verjus</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">
+            €€€€ • Française, Européenne, Moderne
+          </p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/vache-vignes.jpg" alt="Faubourg" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Le 114 Faubourg</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">€€€€ • Française, Européenne</p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/compas.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Frenchie</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/abq-paris.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+            <i class="icon-arrow_right"></i>
+          </div>
+          <h4>Frenchie</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+      </div>
+
+      <h3 class="title">Things to Do in</h3>
+      <div class="carrousel">
+       
+      </div>
+      <h3 class="title">Local Services </h3>
+      <div class="carrousel">
+        <% if(lodging !== undefined){ %>
+          <% lodging.forEach(function(lodging, index){ %>
+            <% if(lodging.result_type === 'things_to_do'){ %>
+        <div>
+          <div class="carrousel-images">
+            <img src="<%=lodging.result_object.photo.images.original.url%>" alt="Verjus" />
+          </div>
+          <div class="favorite"></div>
+          <h4><%=lodging.result_object.name%></h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p><%=lodging.result_object.num_reviews%></p>
+          </div>
+          <p class="item-description">
+            <%=lodging.result_object.location_string%>
+          </p>
+        </div>
+        <% } %>
+        <% }); %>
+        <% } %>
+      </div>
+
+          
+
+      <h3 class="title">Cours et expositions d'art</h3>
+
+      <div class="carrousel">
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/orsay.jpg" alt="Verjus" />
+          </div>
+          <div class="favorite"></div>
+
+          <h4>Verjus</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">
+            €€€€ • Française, Européenne, Moderne
+          </p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/monet.jpg" alt="Verjus" />
+          </div>
+          <div class="favorite"></div>
+
+          <h4>Verjus</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">
+            €€€€ • Française, Européenne, Moderne
+          </p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/atelier-des-lumieres.jpg" alt="Faubourg" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Le 114 Faubourg</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description">€€€€ • Française, Européenne</p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/bourdelle.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Razzaq1</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/bourdelle.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Razzaq3</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/bourdelle.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+          </div>
+          <h4>Frenchie</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+
+        <div>
+          <div class="carrousel-images">
+            <img src="/assets/img/palais.jpg" alt="Frenchie" />
+            <div class="favorite"></div>
+            <i class="icon-arrow_right"></i>
+          </div>
+          <h4>Frenchie</h4>
+          <div class="carrousel-reviews">
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <i class="icon-bubble_rating_full_refresh"></i>
+            <p>140 000 avis</p>
+          </div>
+          <p class="item-description"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- FOOTER---------- -->
+
+  <footer>
+
+    <p>
+      Made at
+      <a href="https://www.lereacteur.io/" target="_blank" rel="noopener noreferrer">Le Reacteur</a>
+      by
+      <span><a href="https://github.com/cadupuy" target="_blank">Charles-Antoine Dupuy</a></span>
+      - 2020
+    </p>
+  </footer>
+
+  <!-- ---------- MODAL ---------- -->
+
+  <section id="modal">
+    <div class="container-form">
+      <i id="closeForm" class="icon-times"></i>
+      <img src="/assets/img/form-logo.svg" alt="logo" />
+      <p>Bienvenue ; connectez-vous !</p>
+
+      <form class="contact-form">
+        <label for="email">Adrese e-mail</label>
+        <input type="email" name="email" id="email" required placeholder="E-mail" />
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" placeholder="Mot de passe" required />
+        <input class="OpenForm" type="submit" value="Connexion" />
+      </form>
+      <p class="cgv">
+        Et poursuivant, vous acceptez nos
+        <span class="cgu">Conditions d'utilisation</span> et vous confirmez
+        que vous avez lu notre
+        <span class="cookies">Politique de confidentialité et d'utilisation des cookies.</span>
+      </p>
+    </div>
+  </section>
+<script>
+ // Show the loader
+document.getElementById("loader").style.display = "block";
+
+// Hide the loader after 3 seconds
+setTimeout(function(){
+  document.getElementById("loader").style.display = "none";
+}, 3000);
+
+</script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

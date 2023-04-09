@@ -29,7 +29,7 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a target="_blank" href="/review" class="nav-link" href="#">Blog</a>
+              <a target="_blank" href="/blog" class="nav-link" href="#">Blog</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -60,11 +60,14 @@
             <img src="/uploads/<%=images%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" target="_blank" href="/profile"><%=names%>
             </a>
           </div>
+          <% if(names = ''){ %>
           <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
               href="/login">Login </a></button>
+              <% } else { %> 
           <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
               href="/logout">Logout</a></button>
         </div>
+        <% } %>
 
       </div>
 

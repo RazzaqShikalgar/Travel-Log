@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/planner.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is My Trip Planned</h1>
+    <div class="plan-container">
+        <% if(plans !=''){ %>
+          <% plans.forEach(function(plans, index){ %>
+            <div class="plan-day" id="day<%=index+1%>">
+              <div class="plan-header">
+                <h2><%=plans.day%></h2>
+                <button class="plan-toggle"><i class="fas fa-angle-down"></i></button>
+              </div>
+              <div class="plan-activities">
+                <% var activity = plans.activities; %>
+                <% activity.forEach(function(activity, index){ %>
+                  <div class="activity">
+                    <h2><%=activity.time%></h2>
+                    <h2><%=activity.description%></h2>
+                  </div>
+                <% }); %>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+      
+      
+      <script>
+        // Get all the plan days
+        const planDays = document.querySelectorAll('.plan-day');
+      
+        // Loop through each plan day
+        planDays.forEach(function(planDay) {
+          // Get the plan toggle button for the current plan day
+          const planToggle = planDay.querySelector('.plan-toggle');
+      
+          // Add click event listener to plan toggle button
+          planToggle.addEventListener('click', function() {
+            // Toggle active class on plan day
+            planDay.classList.toggle('active');
+          });
+        });
+      </script>
+      
+</body>
+</html>

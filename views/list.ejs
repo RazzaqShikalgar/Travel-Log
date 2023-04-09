@@ -47,6 +47,9 @@
 </div>
 
 <body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
   <!-- <div class="center-body">
     <div class="loader-ball-12">
       <div></div>
@@ -197,7 +200,7 @@
                 <div class="col-md-3">
                   <div class="card">
                     <div class="card-img">
-                      <img src="/uploads/card1.jpg" class="img-fluid">
+                      <a href="/advisor/id"><img style="cursor:pointer" src="/uploads/card1.jpg" class="img-fluid"></a>
                     </div>
                     <div class="card-img-overlays">Taiwan</div>
                   </div>
@@ -209,10 +212,10 @@
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-img">
-                          <img src="/uploads/<%=Category.image%>" alt="<%= Category.namee%>" class="img-fluid">
+                          <a href="/advisor/<%=Category._id%>"><img src="<%=Category.image%>" alt="<%= Category.namee%>" class="img-fluid"></a>
                         </div>
                         <div class="card-img-overlays">
-                          <%= Category.namee%>
+                          <%=Category.namee%>
                         </div>
                       </div>
 
@@ -316,10 +319,11 @@
             <div class="blog__item">
               <div class="blog__item__pic">
                 <!-- data-setbg="/images/bg2.jpg"> -->
-                <img src="/images/<%=Blogs.image%>" width="100%" alt="">
+              <a href="/category/:id"><img style="cursor:pointer" src="/images/<%=Blogs.image%>" width="100%" alt=""></a>
               </div>
               <div class="blog__item__text">
                 <span><img src="/images/calendar.png" alt="">
+                  <a href="/blog" target="_blank">user Name</a> <br>
                   <%=Blogs.Date%>
                 </span>
                <a href="/blog" target="_blank"><%=Blogs.name%></a> 
@@ -531,6 +535,14 @@
    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
    <script>
      AOS.init();
+     // Show the loader
+document.getElementById("loader").style.display = "block";
+
+// Hide the loader after 3 seconds
+setTimeout(function(){
+  document.getElementById("loader").style.display = "none";
+}, 3000);
+
    </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="/path/to/cdn/bootstrap.bundle.min.js"></script>

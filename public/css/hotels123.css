@@ -1,0 +1,312 @@
+#main-container {
+  border: 0px solid red;
+  height: auto;
+  width: 100%;
+  margin: auto;
+  margin-top: 70px;
+}
+
+#nav2 {
+  border: 2px solid rgb(186, 173, 173);
+  height: 40px;
+  font-size: 14px;
+  font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
+  color: grey;
+}
+#nav2 div {
+  margin-left: 50px;
+  margin-top: 5px;
+}
+#dot {
+  color: rgb(0, 0, 5);
+  font-size: larger;
+  font-weight: bolder;
+}
+#nav2 div {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: row;
+}
+#nav2 #main {
+  margin-left: 80px;
+}
+#hotel_ {
+  text-decoration: underline;
+  font-weight: bolder;
+}
+#slider {
+  width: 100%;
+  height: 500px;
+  background-image: url("https://th.bing.com/th/id/R.eaf73045755ce8516694ac8b48bbfeec?rik=lx4A%2ft2UuxyhRQ&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2016%2f09%2fLuxury-Macau-Hotels-Macau-Resorts-Banyan-Tree-Macau-Wallpaper-HD-1920x1080.jpg&ehk=R8LNZttyPPuDJiwI%2f%2bPY3pPKhG7oCBgE9I8rAFoeuXY%3d&risl=&pid=ImgRaw&r=0 ");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: bgChange 30s linear infinite;
+}
+@keyframes bgChange {
+  0% {
+    background-image: url("https://th.bing.com/th/id/R.eaf73045755ce8516694ac8b48bbfeec?rik=lx4A%2ft2UuxyhRQ&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2016%2f09%2fLuxury-Macau-Hotels-Macau-Resorts-Banyan-Tree-Macau-Wallpaper-HD-1920x1080.jpg&ehk=R8LNZttyPPuDJiwI%2f%2bPY3pPKhG7oCBgE9I8rAFoeuXY%3d&risl=&pid=ImgRaw&r=0");
+  }
+  20% {
+    background-image: url("https://th.bing.com/th/id/R.eaf73045755ce8516694ac8b48bbfeec?rik=lx4A%2ft2UuxyhRQ&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2016%2f09%2fLuxury-Macau-Hotels-Macau-Resorts-Banyan-Tree-Macau-Wallpaper-HD-1920x1080.jpg&ehk=R8LNZttyPPuDJiwI%2f%2bPY3pPKhG7oCBgE9I8rAFoeuXY%3d&risl=&pid=ImgRaw&r=0");
+  }
+  25% {
+    background-image: url("https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9");
+  }
+  45% {
+    background-image: url("https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9");
+  }
+  50% {
+    background-image: url("https://wallpapercave.com/wp/wp3598837.jpg ");
+  }
+  70% {
+    background-image: url("https://wallpapercave.com/wp/wp3598837.jpg");
+  }
+  75% {
+    background-image: url("https://imtmonline.com/wp-content/uploads/2020/08/81949388_2065979533539355_8569999874957770752_o.jpg");
+  }
+  95% {
+    background-image: url("https://imtmonline.com/wp-content/uploads/2020/08/81949388_2065979533539355_8569999874957770752_o.jpg");
+  }
+}
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  top: 5;
+  left: 0;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+#content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: larger;
+  font-family: sans-serif;
+}
+
+#box {
+  border: 0px solid black;
+  width: 80%;
+  height: auto;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+#left {
+  border: 0px solid red;
+  width: 30%;
+  height: 1200px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#container {
+  border: 0px solid blue;
+  width: 70%;
+  height: auto;
+}
+#c1 {
+  border: 0px solid yellow;
+}
+iframe {
+  width: 100%;
+  height: 200px;
+  margin-top: 10px;
+}
+#static img {
+  width: 23%;
+  margin-left: 10px;
+  height: 200px;
+  margin-top: 10px;
+  border:0px solid red;
+  cursor: pointer;
+}
+
+#static img:hover{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+#pop {
+  margin-left: 10px;
+}
+
+#c2 {
+  border: 0px solid orange;
+  /* margin-top: 50px; */
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* border: 1px solid green;  */
+}
+#c2 div {
+  border: 0px solid rgb(221, 25, 57);
+}
+#hotelImage {
+  width: 44%;
+}
+#hotelImage img {
+  width: 100%;
+  height: 100%;
+}
+
+#detail {
+  width: 56%;
+  border: 0px solid rgb(229, 42, 42);
+  height: 100%;
+  /* margin-top: 30px; */
+  /* margin-left: -350px; */
+}
+#detail h4 {
+  font-size: 25px;
+}
+
+#detail p {
+  font-size: 25px;
+}
+#hotel {
+  display: flex;
+  margin: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+#div1 {
+  width: 50%;
+}
+#div2 {
+  width: 50%;
+  margin-left: 20px;
+}
+#div1 img {
+  width: 100%;
+  height: 100%;
+}
+#hotel:hover{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+#c2 p{
+  font-size: large;
+  margin-top: 10px;
+  
+}
+#c2 h4{
+  font-size: larger;
+  margin-bottom: 10px;
+}
+#c2 #div2{
+  margin-top: 10px;
+}
+#container h3{
+  margin-top: 30px;
+  margin-left: 15px;
+}
+.price_sort{
+  display: flex;
+  justify-content: space-between;
+}
+#price{
+  margin-top: 20px;
+  margin-right: 10px;
+  padding:1px;
+  font-size: small;
+}
+
+#sort_btn button{
+ width:97%;
+ border:none;
+ padding:5px;
+ text-align: left;
+ margin-top: 5px;
+ cursor: pointer;
+ font-size: 16px;
+ font-family: inherit;
+ background-color: white;
+
+}
+#sort_btn{
+  margin-top: 30px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  /* height: 150px; */
+  
+}
+#sort_btn button:hover{
+  box-shadow: rgba(152, 182, 232, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background-color: rgb(202, 222, 238);
+}
+#sort_cc{
+  margin-top: 30px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  /* height: 150px; */
+}
+#sort_cc button{
+  width:97%;
+  border:none;
+  padding:5px;
+  text-align: left;
+  margin-top: 5px;
+  cursor: pointer;
+  font-size: 16px;
+ font-family: inherit;
+ background-color: white;
+ }
+ #sort_cc  button:hover{
+  background-color: rgb(202, 222, 238);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+#rate{
+  margin-top: 30px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  /* height: 150px; */
+}
+#rate  button{
+  width:97%;
+  border:none;
+  padding:8px;
+  text-align: left;
+  margin-top: 5px;
+ cursor: pointer;
+ font-size: 16px;
+ font-family: inherit;
+ background-color: white;
+ }
+ #rate  button:hover{
+  background-color: rgb(202, 222, 238);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+#left h3{
+  margin-left: 20px;
+  font-size: inherit;
+}
+#left button{
+  margin-left: 10px;
+}
+#left i{
+  margin-right: 10px;
+}
+#covid{
+  margin-top: 20px;
+  margin-left: 8px;
+
+}
+#covid input{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#covid img{
+  margin-left: 40px;
+}
+#deals{
+  margin-top: 26px;
+  margin-left: 8px;
+
+}
+#deals input{
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+ font-family: inherit;
+}

@@ -49,6 +49,13 @@
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
+  html::-webkit-scrollbar {
+    width: .5rem;
+  }
+  html::-webkit-scrollbar-thumb {
+    background: #eb08e0;
+    border-radius: 5rem;
+  }
   
   @-ms-viewport {
     width: device-width;
@@ -1551,6 +1558,7 @@
   .card-profile-stats {
     padding: 1rem 0;
   }
+ 
   
   .card-profile-stats>div {
     margin-right: 1rem;
