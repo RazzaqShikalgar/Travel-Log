@@ -31,41 +31,47 @@
             <li class="nav-item">
               <a target="_blank" href="/blog" class="nav-link" href="#">Blog</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
+              <a href="#destination" class="nav-link" href="#">Categories</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Blog Section
               </a>
               <ul class="dropdown-menu ">
                 <li><a class="dropdown-item" href="#">Add New Blog</a></li>
-                <li><a class="dropdown-item" href="/categoryupload">Add New Category</a></li>
-                <li><a class="dropdown-item" href="/imageupload">Add New Image in Gallery</a></li>
+                <li><a class="dropdown-item" href="/admin/categoryupload">Add New Category</a></li>
+                <li><a class="dropdown-item" href="/admin/imageupload">Add New Image in Gallery</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="/">Home ?</a></li>
+            <li><a class="dropdown-item" href="/">Home ?</a></li> 
               </ul>
-            </li>
-            <!-- <li class="nav-item">
-             <a class="nav-link" href="/login"><%=names%></a>
-           </li> -->
+            </li> -->
+            
 
 
+          
           </ul>
-
+          
           <div class="cart-profile">
             <!-- <a href="#" alt="cart" class="cart" cart-items="2"
             ><i class="fi fi-rr-shopping-cart"></i
           ></a> -->
-            <img src="/uploads/<%=images%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" target="_blank" href="/profile"><%=names%>
+          <% if(isAuthenticated){ %>
+            <img src="/uploads/<%=user.image%>" alt="avatar" class="avatar" /><a class="profile-name mx-4" target="_blank" href="/profile"><%=user.name%>
             </a>
+           <% } else { %>
+            <img src="/images/avatar.png" alt="avatar" class="avatar" /><a class="profile-name mx-4" target="_blank" href="/profile">Username
+          <% } %>
           </div>
-          <% if(names = ''){ %>
+          <% if(isAuthenticated){ %>
           <button class=" btn btn-outline-light btn-dark mx-1" type="submit"><a class="linkbtn" target="_blank"
-              href="/login">Login </a></button>
+              href="/logout">Logout </a></button>
               <% } else { %> 
           <button class=" btn btn-outline-light btn-dark mx-3 " type="submit"><a class="linkbtn" target="_blank"
-              href="/logout">Logout</a></button>
+              href="/login">Login</a></button>
         </div>
         <% } %>
 

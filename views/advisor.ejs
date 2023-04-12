@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <title>Advisor Website</title>
@@ -17,7 +16,6 @@
   <link rel="stylesheet" href="/css/advisor.css" />
   <link rel="stylesheet" href="/assets/css/responsive.css" />
 </head>
-
 <body class="body">
   <div id="loader">
     <div class="spinner"></div>
@@ -28,7 +26,7 @@
     <div class="container">
       <div>
         <i class="icon-menu_bars"></i>
-        <img src="/assets/img/logo.svg" alt="description" />
+        <img src="/images/logonew.JPG" alt="description" />
         <i class="icon-search"></i>
       </div>
       <nav>
@@ -44,7 +42,6 @@
           <i class="icon-heart"></i>
           <p>Voyages</p>
         </div>
-
         <button id="openForm">Connect-us</button>
       </nav>
     </div>
@@ -90,7 +87,6 @@
           </div>
         </nav>
       </section>
-
       <section class="pictures">
         <div>
         
@@ -112,8 +108,8 @@
       </section>
       <nav class="menu">
         <p>
-          <span>Europe</span> > <span>France</span> >
-          <span>île-de-France</span> >
+          <!-- <span>Europe</span> > <span>France</span> >
+          <span>île-de-France</span> > -->
           <span><%=location.result_object.name%></span>
           <i class="icon-caret_down"></i>
         </p>
@@ -122,7 +118,7 @@
 
       <section class="description">
         <div>
-          <h2>La Ville Lumière éblouit en tous points</h2>
+          <h2>The City of Light dazzles in every way</h2>
           <p>
           <%=location.result_object.description%>
           </p>
@@ -160,28 +156,28 @@
   <section class="section-1">
     <div class="section-title">
       <div class="border-section-left"></div>
-      <h2>Conseils de voyage</h2>
+      <h2>Travelling Tips</h2>
       <div class="border-section-right"></div>
     </div>
 
-    <p class="view-all">Tout afficher</p>
+    <p class="view-all">Read More</p>
 
     <div class="advice-cards">
       <div>
         <img src="/assets/img/icone-1.svg" alt="icone 1" />
-        <p>Meilleure période pour visiter</p>
+        <p>Best time to visit</p>
       </div>
       <div>
         <img src="/assets/img/icone-2.svg" alt="icone 2" />
-        <p>Se déplacer</p>
+        <p>Move</p>
       </div>
       <div>
         <img src="/assets/img/icone-3.svg" alt="icone 3" />
-        <p>Coutumes locales</p>
+        <p>Local Customes</p>
       </div>
       <div>
         <img src="/assets/img/icone-4.svg" alt="icone 4" />
-        <p>Conseils de pros</p>
+        <p>Tips from the pro's</p>
       </div>
     </div>
   </section>
@@ -192,7 +188,7 @@
     <div class="container">
       <div class="section-title">
         <div class="border-section-left"></div>
-        <h2>Immanquable à Paris</h2>
+        <h2><%=location.result_object.name%></h2>
         <div class="border-section-right"></div>
       </div>
       <div class="carrousel">
@@ -209,7 +205,9 @@
           <div class="carrousel-images">
             <% if (attraction.photo !== undefined) {%>
               <a href="/location/detail/<%=attraction.photo.id%>">  <img src="<%=attraction.photo.images.original.url%>" alt="George V"/></a>
-            <% } %>
+            <% } else{ %>
+              <a href="/location/detail">  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="George V"/></a>
+              <% } %>
             <div class="favorite"></div>
             <i class="icon-arrow_right"></i>
           </div>
@@ -220,7 +218,7 @@
             <i class="icon-bubble_rating_full_refresh"></i>
             <i class="icon-bubble_rating_full_refresh"></i>
             <i class="icon-bubble_rating_full_refresh"></i>
-            <p><%=attraction.num_reviews%></p>
+            <p><%=attraction.num_reviews%> Reviews</p>
           </div>
         </div>
         <% }); %>
@@ -273,7 +271,7 @@
         <div>
           <h3>Restro</h3>
           <p class="description">
-            Bistrots et bars typiques, et plus encore à Paris.
+            Bistrots et bars typiques, et plus encore à <%=location.result_object.name%>.
           </p>
           <p class="view-all-cards">Read More</p>
         </div>
@@ -317,7 +315,7 @@
     <div class="container">
       <div class="section-title">
         <div class="border-section-left"></div>
-        <h2>Guides de voyageurs</h2>
+        <h2>Traveller Guide</h2>
         <div class="border-section-right"></div>
       </div>
 
@@ -327,9 +325,9 @@
           <img src="/assets/img/eatwith.jpg" alt="description" />
           <div>
             <p class="author-guide">Par Eatwith</p>
-            <h4>Best summer things to do in Paris | Eatwith</h4>
+            <h4>Best summer things to do in <%=location.result_object.name%> | Eatwith</h4>
             <p class="guide-description">
-              Eatwith host Elodie is a private tour guide in Paris, offering
+              Eatwith host Elodie is a private tour guide in <%=location.result_object.name%>, offering
               all sorts of tours for small groups, from fashion to food...
             </p>
             <i class="icon-heart_fill"></i>
@@ -337,13 +335,13 @@
           </div>
         </div>
         <div>
-          <img src="/assets/img/paris.jpg" alt="description" />
+          <img src="/images/card2img.jpg" alt="description" />
           <img src="/assets/img/gabigabtravel.jpg" alt="description" />
           <div>
             <p class="author-guide">Par gabigabtravel</p>
             <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
             <p class="guide-description">
-              Avec : Les Catacombes De Paris, Parc Montsouris, Le Tournesol
+              Avec : Les Catacombes De <%=location.result_object.name%>, Parc Montsouris, Le Tournesol
               cafe, Fondation Cartier pour l'art contemporain, Gare ...
             </p>
             <i class="icon-heart_fill"></i>
@@ -358,7 +356,7 @@
             <p class="author-guide">Par Topito</p>
             <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
             <p class="guide-description">
-              Avec : Les Catacombes De Paris, Parc Montsouris, Le Tournesol
+              Avec : Les Catacombes De <%=location.result_object.name%>, Parc Montsouris, Le Tournesol
               cafe, Fondation Cartier pour l'art contemporain, Gare ...
             </p>
             <i class="icon-heart_fill"></i>
@@ -383,7 +381,7 @@
 
       <div class="forum-articles">
         <div>
-          <h4>Week end parisien en amoureux</h4>
+          <h4>Week end <%=location.result_object.name%>ien en amoureux</h4>
           <div>
             <img src="/assets/img/mylene.jpg" alt="Avatar" />
             <p>
@@ -393,7 +391,7 @@
           </div>
         </div>
         <div>
-          <h4>Conseils 3 jours a Paris en famille oct 2020</h4>
+          <h4>Conseils 3 jours a <%=location.result_object.name%> en famille oct 2020</h4>
           <div>
             <img src="/assets/img/elise.jpg" alt="Avatar" />
             <p>
@@ -403,7 +401,7 @@
           </div>
         </div>
         <div>
-          <h4>Transport entre Paris et Charles de Gaulle</h4>
+          <h4>Transport entre <%=location.result_object.name%> et Charles de Gaulle</h4>
           <div>
             <img src="/assets/img/marc.jpg" alt="Avatar" />
             <p>
@@ -422,7 +420,7 @@
     <div class="container">
       <div class="section-title">
         <div class="border-section-left"></div>
-        <h2>Plus de choix à Paris</h2>
+        <h2>Plus de choix à <%=location.result_object.name%></h2>
         <div class="border-section-right"></div>
       </div>
 
@@ -553,7 +551,7 @@
 
           
 
-      <h3 class="title">Cours et expositions d'art</h3>
+      <h3 class="title">Art Classes and Exhibiton</h3>
 
       <div class="carrousel">
         <div>
@@ -685,11 +683,11 @@
   <footer>
 
     <p>
-      Made at
-      <a href="https://www.lereacteur.io/" target="_blank" rel="noopener noreferrer">Le Reacteur</a>
+      Made 
+      <a href="" target="_blank" rel="At College">At College</a>
       by
-      <span><a href="https://github.com/cadupuy" target="_blank">Charles-Antoine Dupuy</a></span>
-      - 2020
+      <span><a href="https://github.com/cadupuy" target="_blank">By Travel Log Developers</a></span>
+      - 2023
     </p>
   </footer>
 

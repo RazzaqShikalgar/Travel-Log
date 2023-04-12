@@ -8,6 +8,9 @@ description:{
 type:String,
 // required:'This field is required'
 },
+category:{
+    type:String,
+},
 image:{
     type:String,
     // required:'This field is required'

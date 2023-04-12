@@ -1,13 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
+const cors = require('cors') ;
+const blogsRoutes = require( './api/routes/blogs' ) ;
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 // const session = require('express-session');
 // const models = require()
 const routes = require("./routes/routes.js");
 const cookieParser = require("cookie-parser");
+const multer = require('multer');
 const passport = require("passport");
 const encrypt = require("mongoose-encryption");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -15,6 +17,8 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary").v2;
+
+// const blogsRoutes = require( './api/routes/blogs' ) ;
 // //Models and Controller Exports --------------------------------
 // const a = require('./controllers/photocontroller.js');
 // const blogs = require('./controllers/blogcontroller.js');
@@ -54,7 +58,8 @@ app.use(cookieParser());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 // mongoose.set("useCreateIndex", true);
-
+app.use(cors( )) ;
+app.use(bodyParser.json());
 app.use(routes);
 app.use(
   fileUpload({
@@ -71,6 +76,37 @@ app.post("upload/cloud", async (req, res) => {
   });
   res.json(result);
 });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  }
+});
+const upload = multer({ storage: storage });
+
+
+app.use('/api/blogs', blogsRoutes) ;
+
+app.get('/ui', function(req, res) {
+  res.render('index');
+  // C:/api/views/.ejs
+});
+app.get('/ui/home', function(req, res) {
+  res.render('index');
+  // C:/api/views/.ejs
+});
+app.get('/ui/createBlog', function(req, res) {
+  res.render('createBlog');
+  // C:/api/views/.ejs
+});
+app.get('/ui/myBlogs', function(req, res) {
+  res.render('myBlogs');
+  // C:/api/views/.ejs
+});
+
 // a();
 // blogs();
 // cards();

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('common/head'); %> 
+</head>      
+    </head>
+    <body>
+      <%- include('common/nav'); %> 
+
+      <form onsubmit="return f(this);" action="http://localhost:3000/api/blogs" method="POST" class="trip-form">  
+        <div class="container">
+            <div class="col-lg-12">
+                <h1 id="buttons">Create a blog</h1>
+            </div> 
+         
+ 
+            <div class="row">
+                <div class="col-md-4">
+                    <%- include('components/create.ejs'); %>
+                </div> 
+                <div class="col-md-8">
+                  <%- include('components/blog.ejs'); %>
+                </div>
+            </div>
+          
+        </div> 
+      </form> 
+    </body>
+    <script>function f(profileForm) {
+        console.log("Running with JS");
+        const data = {};
+        for (let input of profileForm) {
+            console.log(input.name)
+            if (input.name && input.value) {
+                data[input.name] = input.value
+            }
+        }
+    
+      
+profileForm.send.value = "Adding profile information. Please wait ...";
+              
+        fetch(profileForm.action, {
+            method: profileForm.method,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(function(res) {
+          if (res.ok) {
+            console.log(res);
+            // profileForm.send.value = "Sent!";
+          } else {
+            console.log("error", res);
+            // profileForm.send.value = "Error, try again";
+          }
+        });
+      
+        console.log("Down here");
+      
+        return false;
+    }
+      </script>
+      
+</html>

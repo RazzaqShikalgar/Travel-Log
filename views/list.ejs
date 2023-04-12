@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="css/swiper.css">
   <title>Travel Log</title>
 </head>
+
 <div class="container">
   <div class="alerts">
     <% if(message !='' ) { %>
@@ -46,10 +47,49 @@
   </div>
 </div>
 
+<!-- <style>
+  #loader {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+
+#loader-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  font-size: 24px;
+  text-align: center;
+  line-height: 80px;
+}
+
+</style>  -->
 <body>
   <div id="loader">
     <div class="spinner"></div>
   </div>
+  <!-- <div id="loader">
+    <div id="loader-progress"></div>
+  </div>
+  <div id="preloader"> -->
+    <!-- <div id="preloader-inner">
+      <div id="preloader-animation"></div>
+      <div id="preloader-progress"></div>
+      <div id="preloader-message">Loading...</div>
+    </div>
+  </div> -->
+  
   <!-- <div class="center-body">
     <div class="loader-ball-12">
       <div></div>
@@ -94,9 +134,14 @@
             world, filled with itinerary ideas, travel tips, and recommendations for places to go.</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
-              <a href="/explore" target="_blank" data-aos="fade-up-right"
+              <!-- <a href="/explore" target="_blank" data-aos="fade-up-right"
                 class=" btn btn-primary btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Start Exlporing</span>
+                <i class="bi bi-arrow-right"></i>
+              </a> -->
+              <a href="/ui/createBlog" target="_blank" data-aos="fade-up-right"
+                class="mx-4 btn btn-primary btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Add Your Blog</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
@@ -133,9 +178,8 @@
 
     <div class="content" data-aos="fade-left" data-aos-delay="600">
       <span  data-aos="fade-left" >why choose us?</span>
-      <h3  data-aos="fade-left" >Nature's Majesty Awaits You</h3>
-      <p  data-aos="fade-right">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde fugit repellat error deserunt nam aperiam odit
-        libero quos provident. Nostrum?</p>
+      <h3  data-aos="fade-left" >Choose Adventure. Choose Us.</h3>
+      <p  data-aos="fade-right">Are you a fan of adventure and new experiences? Because our travel website is the gateway to a world full of them. So why settle for ordinary when you can choose extraordinary with us?</p>
       <a href="#" class="btn btns btn-outline-dark">Read more</a>
     </div>
 
@@ -161,11 +205,11 @@
             <div class="content">
               <h3  data-aos="fade-up-left" data-aos-delay="600">
                 <%=Cards.name%>
-              </h3>
+                
               <p  data-aos="fade-left">
                 <%=Cards.description%>
               </p>
-              <a href="#"  data-aos="fade-up-left">Read more <i class="fas fa-angle-right"></i></a>
+              <a href="/details/<%=Cards.category%>"  data-aos="fade-up-left">Read more <i class="fas fa-angle-right"></i></a>
             </div>
           </div>
           <% }); %>
@@ -212,7 +256,7 @@
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-img">
-                          <a href="/advisor/<%=Category._id%>"><img src="<%=Category.image%>" alt="<%= Category.namee%>" class="img-fluid"></a>
+                          <a href="/advisor/<%=Category._id%>"><img src="<%=Category.image%>" alt="<%= Category.namee%>" target="_blank" class="img-fluid"></a>
                         </div>
                         <div class="card-img-overlays">
                           <%=Category.namee%>
@@ -542,6 +586,23 @@ document.getElementById("loader").style.display = "block";
 setTimeout(function(){
   document.getElementById("loader").style.display = "none";
 }, 3000);
+
+// window.addEventListener("load", function() {
+//   document.getElementById("loader").style.display = "none";
+// });
+
+// var loaderProgress = document.getElementById("loader-progress");
+// var progress = 0;
+
+// var loadingInterval = setInterval(function() {
+//   progress += 1;
+//   loaderProgress.innerHTML = progress + "%";
+  
+//   if (progress >= 100) {
+//     clearInterval(loadingInterval);
+//   }
+// }, 50);
+
 
    </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
