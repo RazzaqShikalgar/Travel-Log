@@ -12,15 +12,17 @@ const imageController = {
   uploadImage: async (req, res) => {
     try {
       // Extract image file from request body
-      const { file } = req;
+      const { image } = req;
 
       // Upload image to Cloudinary
-      const result = await cloudinary.uploader.upload(file.path);
-
+      const fileName = path.basename(image.path);
+      const result = await cloudinary.uploader.upload(image.path);
+      // const result = await Image.create({ fileName });
       // Send response with image URL
       res.status(200).json({
         message: 'Image uploaded successfully',
-        imageUrl: result.secure_url
+        // imageUrl: result.secure_url,
+        imageUrl: fileName
       });
     } catch (error) {
       console.error(error);

@@ -84,7 +84,6 @@ route.get("/", check, async (req, res) => {
     message: "",
     isAuthenticated,
     user: req.data,
-    // image:,
     categories,
     blogs,
     cards,
@@ -122,6 +121,14 @@ route.get("/signup", function (req, res) {
 route.get("/review", function (req, res) {
   res.render("card");
 });
+route.get("/view-template", check, function (req, res) {
+  const isAuthenticated = req.data ? true : false;
+  if (isAuthenticated) {
+    return res.render("template");
+  } else {
+    res.render("register", { message: "Please Login To Access Other Pages" });
+  }
+});
 route.get("/admin/imageupload", check, function (req, res) {
   const isAuthenticated = req.data ? true : false;
   if (isAuthenticated != true) {
@@ -141,18 +148,18 @@ route.get("/explore", check, async (req, res) => {
 });
 
 route.get("/blog", check, function (req, res) {
-  const isAuthenticated = req.data? true:false;
-  if(!isAuthenticated){
+  const isAuthenticated = req.data ? true : false;
+  if (!isAuthenticated) {
     return res.redirect("/login");
   }
 
-  res.render("blog", { isAuthenticated , user:req.data});
+  res.render("blog", { isAuthenticated, user: req.data });
 });
 
 // route.get("/location/:id", check, async (req, res) => {
 //   const id = req.params.id;
-//   // const placename = req.params.namee;
-//   // console.log(placename);
+//   // const name = req.params.namee;
+//   // console.log(name);
 //   // const categorys = req.params.category;
 //   const category = await Category.findById(id);
 //   console.log(category.namee);
@@ -318,7 +325,7 @@ route.get("/filter", async (req, res) => {
 
 route.get("/advisor/:id", check, async (req, res) => {
   const id = req.params.id;
-  const placename = req.params.namee;
+  const name = req.params.namee;
   const category = await Category.findById(id);
   const place = category.namee;
   //Searching Hotels
@@ -356,7 +363,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options2 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b",
+      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536",
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -372,7 +379,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options3 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b", //change5
+      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536", //change5
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -572,9 +579,12 @@ route.get("/details/:category", async (req, res) => {
 //   console.log(days,loc);
 //   // res.render("detail");
 // });
-route.get("/profile", check, function (req, res) {
+route.get("/profile", check, async(req, res)=>{
   const email = req.data.email;
   const number = req.data.phone;
+  const name = "mumbai";
+  const uploads =  await Blogs.countDocuments({name:name});
+  console.log(uploads);
   res.render("profile", {
     names: req.data.name,
     images: req.data.image,
@@ -688,7 +698,10 @@ route.post("/admin/categoryupload", async (req, res, next) => {
 //   })
 // }).single('file');
 
-route.post("/signup", upload, async (req, res) => {
+route.post("/signup",async (req, res) => {
+  const file = req.files.image;
+  cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+    console.log(result.url);
   JWT_SECRET =
     "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu";
 
@@ -705,7 +718,7 @@ route.post("/signup", upload, async (req, res) => {
     });
   } else {
     try {
-      const image = req.file.filename;
+      const image = result.url;
       // Checking user exists or not
       const userExist = await User.findOne({ email });
       if (userExist) {
@@ -734,6 +747,7 @@ route.post("/signup", upload, async (req, res) => {
     }
   }
 });
+});
 
 // Middleware function for checking the user is legit or not
 async function check(req, res, next) {
@@ -760,15 +774,9 @@ async function check(req, res, next) {
   }
 }
 
-route.get("/logout", check, function (req, res) {
-  req.user.removeToken(req.token, (err, user) => {
-    if (err) return res.status(400).send(err);
-    res.sendStatus(200);
-  });
-});
 
 //Login Page
-route.post("/login", async function (req, res) {
+route.post("/login", async(req, res)=>{
   // const aut = User.register({name:req.body.name},req.body.password);
   JWT_SECRET =
     "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu";
@@ -796,10 +804,10 @@ route.post("/login", async function (req, res) {
                 httpOnly: true,
               })
               .redirect("/");
-            //  return res.cookie("list",{message:'Logged in Successfully',blogs:blogs,names:foundUser.name,images:foundUser.image,cards:cards,categories:categories,gallery:gallery});
+              //  return res.cookie("list",{message:'Logged in Successfully',blogs:blogs,names:foundUser.name,images:foundUser.image,cards:cards,categories:categories,gallery:gallery});
 
-            // return res.render("register",{message:'Hey !! ' + foundUser.name + ' Welcome to Our Website',});
-          } else {
+              // return res.render("register",{message:'Hey !! ' + foundUser.name + ' Welcome to Our Website',});
+            } else {
             return res.render("register", { message: "Something went wrong" });
           }
         });
@@ -809,8 +817,6 @@ route.post("/login", async function (req, res) {
     }
   });
 });
-
-
 
 
 // route.get('/ui', function(req, res) {
@@ -829,18 +835,6 @@ route.post("/login", async function (req, res) {
 //   res.render('myBlogs');
 //   // C:/api/views/.ejs
 // });
-
-
-
-
-
-
-
-
-
-
-
-
 
 //session login
 // route.post("/login",function(req,res){

@@ -115,24 +115,6 @@ app.get('/ui/myBlogs', function(req, res) {
 // app.use(models);
 // -----------Card  Data------------
 
-// app.get('/',async(req,res) => {
-//   try {
-//   const limitNumber = 8;
-//   const blognumber = 3;
-//   const cardNumber = 4;
-//   const galleryNumber =20;
-//   // const User = 1;
-//   const categories = await Category.find({}).limit(limitNumber);
-//   const blogs = await Blogs.find({}).limit(blognumber);
-//   const cards = await Cards.find({}).limit(cardNumber);
-//   const gallery = await Gallery.find({}).limit(galleryNumber);
-//   const name="here";
-//   res.render("list",{message:'',names:'',webname:name,categories ,blogs ,cards,gallery});
-//   // console.log(categories);
-// } catch (error) {
-//   res.status(500).send({message: error.message || "Error Ocured"});
-// }
-// });
 // --------------------------------------------------
 // session
 // passport.use(User.createStrategy());

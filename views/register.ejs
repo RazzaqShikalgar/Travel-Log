@@ -79,7 +79,7 @@
 
     <div class="container right-panel-active"  id="container">
       <div class="form-container sign-up-container">
-        <form action="/signup" enctype="multipart/form-data" method="post">
+        <form action="/signup" enctype="multipart/form-data"  method="post">
           <h1>Create Account</h1>
           <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <a href="#" onclick="signOut();">Sign out</a>
@@ -91,10 +91,10 @@
           <span>Or use your email for registration</span>
           <input name="name" type="text" placeholder="Name" />
           <input name="email" type="email" placeholder="Email" />
-          <input name="phone" type="number" placeholder="number" />
+          <input name="phone" type="phonenumber" placeholder="Phone number" />
           <input name="password" type="password" placeholder="Password" />
           <input name="cpassword" type="password" placeholder="Confirm password" />
-          <input name="image" type="file" />
+          <input name="image" type="file" placeholder="profile image" />
           <button>Sign Up</button>
         </form>
       </div>
