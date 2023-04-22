@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/hotels123.css" />
+    <link rel="stylesheet" href="/css/hotelStyle.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="../Homepage/index.css" />
+    <script
+      src="https://kit.fontawesome.com/4dbaa63c16.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+    rel="icon"
+    type="image/x-icon"
+    href="../images/Travel Advisor logo.png"
+  />
+    <title>Hotels</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+
+
+    <!-- Main-container -->
+    <!-- <div id="main-container">
+      <div id="nav2">
+        <div id="main">
+          <div id="hotel_">Hotels</div>
+          <div>Things to do</div>
+          <div>Restaurants</div>
+          <div>Flights</div>
+          <div>Holiday Homes</div>
+          <div>Package Holidays</div>
+          <div>Cruises</div>
+          <div id="dot">...</div>
+        </div>
+      </div> -->
+      <div id="slider">
+        <div id="overlay"></div>
+        <div id="content">
+          <h1>Hotels and Places to Stay</h1>
+        </div>
+      </div>
+      <div id="box">
+        <div id="left">
+          <div class="map">
+            <div class="gmap_canvas">
+              <iframe
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=india&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe>
+            </div>
+          </div>
+          <div id="covid">
+            <h3>COVID-19 <i class="fa-solid fa-circle-info"></i> <i class="fa-solid fa-angle-down"></i></h3>
+            <input type="checkbox">  Properties taking saftey measures
+            <img src="https://static.tacdn.com/img2/icons/illustration-handwash.svg" alt="">
+          </div>
+          <div id="deals">
+            <h3>Deals  <i class="fa-solid fa-angle-down"></i></h3>
+            <input type="checkbox"> Free Cancellation <i class="fa-solid fa-circle-info"></i><br>
+            <input type="checkbox"> Reserve now , pay at stay <i class="fa-solid fa-circle-info"></i><br>
+            <input type="checkbox"> Properties with special offers 
+          </div>
+          <div id="sort_btn">
+            <h3>Best Values</h3>
+            <button id="sort_lth">
+             <input type="radio"> Price low to high
+            </button>
+            <button id="sort_htl">
+              <input type="radio"> Price high to low
+            </button>
+          </div>
+          <div id="sort_cc">
+            <h3>Categories</h3>
+            <button id="filter_ac">
+              <input type="radio"> Ac
+            </button>
+            <button id="filter_nonac">
+              <input type="radio"> Non Ac
+            </button>
+          </div>
+          <div id="rate">
+            <h3>Traveller Rating</h3>
+            <button id="ratingLH">
+              <input type="radio"> Rating > ⭐⭐⭐⭐
+            </button>
+            <button id="ratingHL">
+              <input type="radio"> Rating < ⭐⭐⭐⭐
+            </button>
+          </div>
+        </div>
+
+        <div id="container">
+          <div id="c1">
+            <div id="static">
+              <h1 id="pop">Popular Hotels</h1>
+              <div id="one">
+                <img
+                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/88/be/09/caption.jpg?w=300&h=300&s=1"
+                  alt=""
+                />
+                <img
+                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/88/be/20/caption.jpg?w=300&h=300&s=1"
+                  alt=""
+                /> 
+                <img
+                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/88/be/94/caption.jpg?w=300&h=300&s=1"
+                  alt=""
+                />
+                <img
+                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/88/be/e8/caption.jpg?w=300&h=300&s=1"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="price_sort">
+            <h3>Properties in Hotel</h3>
+          </div>
+          <div class="card">
+            <div class="column">
+              <div class="card-image">
+                <img src="https://picsum.photos/600/400" alt="Card Image">
+              </div>
+              <button class="card-button">Visit Hotel</button>
+            </div>
+            <div class="column">
+              <div class="card-details">
+                <h2>Hotel Name</h2>
+                <ul>
+                  <li><strong>Rating:</strong> #1 of thane</li>
+                  <li><strong>Published:</strong> 10th April, 2023</li>
+                  <li><strong>Category:</strong> Technology</li>
+                </ul>
+                <p>Description about the hotel</p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="card-additional">
+                <h1>Hotel 1</h1>
+                <p>Price: 4353</p>
+                <h2>Hotel 2</h2>
+                <p>Price: 6432</p>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="main-footer"></div>
+  </body>
+  <script src="/js/hotel.js" type="module"></script>
+  <script type="module" src="../Homepage/scripts/main.js"></script>
+</html>

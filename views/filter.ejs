@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/filter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="btns">
+        <button type="button" data-menu="all">All</button>
+        <button type="button" data-menu="Asia">Asia</button>
+        <button type="button" data-menu="Africa">Africa</button>
+        <button type="button" data-menu="cadetblue">East</button>
+        <button type="button" data-menu="red">west</button>
+    </div>
+    <!-- <div class="allwrps">
+        <div data-menu="green" class="single" style="background-color: green;">Green</div>
+        <div data-menu="pirple" class="single" style="background-color: blueviolet;">Pirple</div>
+        <div data-menu="red" class="single">Red</div>
+        <div data-menu="pirple" class="single" style="background-color: blueviolet;">Pirple</div>
+        <div data-menu="green" class="single" style="background-color: green;">Green</div>
+        <div data-menu="red" class="single">Red</div>
+        <div data-menu="pirple" class="single" style="background-color: blueviolet;">Pirple</div>
+        <div data-menu="cadetblue" class="single" style="background-color: cadetblue;">Cadetblue</div>
+        <div data-menu="green" class="single" style="background-color: green;">Green</div>
+        <div data-menu="cadetblue" class="single" style="background-color: cadetblue;">Cadetblue</div>
+        <div data-menu="gray" class="single" style="background-color: darkgray;">Gray</div>
+    </div> -->
+    <% if(asia !== undefined ){ %>
+        <% asia.forEach(function(asia, index){ %>
+    <div data-menu="<%=asia.region%>" class="single" >
+    <figure >
+        <img src="<%=asia.image%>" alt="Mountains">
+        <figcaption><%=asia.name%></figcaption>
+    </figure>
+    <% }); %>
+    <% } %>
+</div>
+
+    <% if(africa !== undefined ){ %>
+        <% africa.forEach(function(africa, index){ %>
+    <div data-menu="Africa" class="single" >
+    <figure >
+        <img src="<%=africa.image%>" alt="Mountains">
+        <figcaption><%=africa.name%></figcaption>
+    </figure>
+    <% }); %>
+    <% } %>
+</div>
+</body>
+<script>
+    
+    function Filtering() {
+            let buttons = document.querySelectorAll('.btns button')
+            let blocks  = document.querySelectorAll('.single')
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    blocks.forEach(block => {
+                        block.classList.remove('active')
+                        block.style.transform = `scale(0)`;
+                        block.style.opacity = `0`;
+                        block.style.visibility = `hidden`; 
+                        block.style.width = `0`;
+                        block.style.marginLeft = `0`;
+                        block.style.marginRight = `0`;
+                        block.style.height = `0`;
+                    })
+
+                    blocks.forEach(blk => {
+                        if (e.target.dataset.menu == blk.dataset.menu) {
+                            blk.classList.add('active')
+                            blk.style.transform = `scale(1)`;
+                            blk.style.opacity = `1`;
+                            blk.style.visibility = `visible`; 
+                            blk.style.width = `590px`;
+                            blk.style.marginLeft = `5px`;
+                            blk.style.marginRight = `5px`;
+                            blk.style.height = `190px`;
+                        }
+                    })
+                if (e.target.dataset.menu == 'all'){
+                    blocks.forEach(block => {
+                        block.classList.add('active')
+                            block.style.transform = `scale(1)`;
+                            block.style.opacity = `1`;
+                            block.style.visibility = `visible`; 
+                            block.style.width = `590px`;
+                            block.style.marginLeft = `5px`;
+                            block.style.marginRight = `5px`;
+                            block.style.height = `190px`;
+                    })
+                }
+
+
+                })
+            })
+        }
+        Filtering()
+
+</script>
+</html>

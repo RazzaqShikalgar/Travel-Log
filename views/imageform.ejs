@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/imageform.css">
+    <title>Gallery Image Upload</title>
+</head>
+<body>
+    
+    <% if(message != '') { %> 
+        <% if(message == 'Document Added Successfully') { %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong><%=message%></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      <%}%>
+      <%}%>
+<div class="container">  
+    <form id="contact" enctype="multipart/form-data" action="/admin/imageupload" method="post">
+      <h3>Upload Image and Title to display it on our website</h3>
+      <!-- <h4>Contact us for custom quote</h4> -->
+      <fieldset>
+        <input placeholder="Gallery Image Title" name="namee" type="text" tabindex="1" required autofocus>
+      </fieldset>
+      
+      <fieldset>
+        <input name="description" placeholder="Description in one line" type="text" tabindex="1" required autofocus>
+      </fieldset>
+
+      <fieldset>
+        <input type="file" name="image" tabindex="4">
+      </fieldset>
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+</body>
+</html>

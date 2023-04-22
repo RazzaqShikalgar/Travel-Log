@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/imageform.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <% if(message != '') { %> 
+        <% if(message == 'Document Added Successfully') { %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong><%=message%></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      <%}%>
+      <%}%>
+<div class="container">  
+    <form id="contact" enctype="multipart/form-data" action="/categoryupload" method="post">
+      <h3>Upload Image and Title to display it on Website</h3>
+      <!-- <h4>Contact us for custom quote</h4> -->
+      <!-- <fieldset>
+        <input placeholder="Image Title" name="namee" type="text" tabindex="1" required autofocus>
+      </fieldset> -->
+      
+      <!-- <fieldset>
+        <input name="description" placeholder="Description in one line" type="text" tabindex="1" required autofocus> -->
+      <!-- </fieldset> -->
+
+      <!-- <fieldset>
+        <input type="file" name="image" type="url" tabindex="4" required>
+      </fieldset>
+     
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+      </fieldset> -->
+      <!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Name of city</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="namee" type="text" placeholder="India,Australia" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="category">Select Category</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="category" class="form-control" required>
+      <option selected>Select Category</option>
+      <option value="India">India</option>
+      <option value="Paris">Paris</option>
+      <option value="Malaysia">Malaysia</option>
+      <option value="UnitedKingdom">UnitedKingdom</option>
+      <option value="Italy">Italy</option>
+      <option value="France">France</option>
+    </select>
+  </div>
+</div>
+
+<!-- Button Drop Down -->
+<!-- <div class="form-group">
+  <label class="col-md-4 control-label" for="buttondropdown">Category</label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input id="buttondropdown" name="buttondropdown" class="form-control" placeholder="Input the Category Which you want to add" type="text" required="">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          explore
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="#">India</a></li>
+          <li><a href="#">Paris</a></li>
+          <li><a href="#">Malaysia</a></li>
+          <li><a href="#">UnitedKingdom</a></li>
+          <li><a href="#">Italy</a></li>
+          <li><a href="#">France</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">File Button</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="image" class="input-file" type="file">
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Submit">Single Button</label>
+  <div class="col-md-4">
+    <button id="Submit" name="Submit" class="btn btn-info">Submit</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+     
+  </div>
+</body>
+</html>
