@@ -17,6 +17,7 @@ const cards = require("../controllers/cardscontroller.js");
 const Category = require("../models/category");
 const Blogs = require("../models/blogs");
 const Place = require("../models/place");
+const Blacklist = require("../models/blacklist");
 // const User = require('../models/signup');
 const Cards = require("../models/cards");
 const DataModel = require("../models/data");
@@ -802,7 +803,44 @@ route.post("/signup",async (req, res) => {
 });
 });
 
+//logout
+// route.post("/logout",async(req,res)=>{
+//     const token = req.cookies.jwtToken.split(' ')[1];
+//     const blacklist = new Blacklist({
+//       token,
+//     });
+//     await blacklist.save();
+//     res.clearCookie('jwt');
 
+//     // Redirect the user to the login page
+//     res.redirect('/login');
+//     res.json({ message: 'Logged out successfully' });
+// });
+route.post('/logout', async (req, res) => {
+  try {
+    // Retrieve the JWT token from the Authorization header
+    const authHeader = req.cookies['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    // If the token is present, blacklist it
+    if (token) {
+      const blacklist = new Blacklist({ token });
+      await blacklist.save();
+    }
+    const isAuthenticated = req.data ? true : false;
+    // Clear the JWT token from the user's browser
+    res.clearCookie('jwtToken',token);
+    
+
+    // Send a JSON response indicating that the logout was successful
+    res.redirect('/');
+    // res.render('list',{message:"Logout Successfully",isAuthenticated});
+    // res.status(200).json({ message: 'Logout successful' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 //Login Page
