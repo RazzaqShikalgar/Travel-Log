@@ -39,3 +39,37 @@
     color:black;
     font-family: sans-serif;
   }
+
+
+
+  
+/* Search Bar */
+.form-control {
+  width: 300px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 20px;
+  border-color: #8b08d7c1;
+  /* border: none; */
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  outline: rebeccapurple;
+  box-shadow: none;
+}
+
+
+
+.btn:hover {
+  background-color: #8b08d7c1;
+}
+
+/* Optional: Center the search bar */
+form {
+  margin: auto;
+  display: flex;
+  align-items: center;
+}

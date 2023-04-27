@@ -886,37 +886,10 @@ route.post("/login", async(req, res)=>{
   });
 });
 
-
-// route.get('/ui', function(req, res) {
-//   res.render('index');
-//   // C:/api/views/.ejs
-// });
-// route.get('/ui/home', function(req, res) {
-//   res.render('index');
-//   // C:/api/views/.ejs
-// });
-// route.get('/ui/createBlog', function(req, res) {
-//   res.render('createBlog');
-//   // C:/api/views/.ejs
-// });
-// route.get('/ui/myBlogs', function(req, res) {
-//   res.render('myBlogs');
-//   // C:/api/views/.ejs
-// });
-
-//session login
-// route.post("/login",function(req,res){
-// User.register({username:req.body.email},req.body.password,function(err,user){
-//   if(err){
-//     console.log(err);
-//     res.redirect("/");
-//   } else{
-//     passport.authenticate("local")(req,res,function(){
-//       res.redirect("/secrets");
-//     });
-//   }
-// });
-// });
-//session login
+route.post('/search',async(req, res) => {
+  const query = req.body.search;
+  console.log(query);
+  res.render('')
+});
 
 module.exports = route;
