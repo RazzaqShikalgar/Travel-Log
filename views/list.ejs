@@ -377,14 +377,14 @@
             <div class="blog__item">
               <div class="blog__item__pic">
                 <!-- data-setbg="/images/bg2.jpg"> -->
-              <a href="/blog-detail/<%=Blogs.id%>"><img style="cursor:pointer" src="/images/<%=Blogs.image%>" width="100%" alt=""></a>
+              <a href="/blog-detail/<%=Blogs.id%>"><img style="cursor:pointer" src="<%=Blogs.image%>" width="100%" alt=""></a>
               </div>
               <div class="blog__item__text">
                 <span><img src="/images/calendar.png" alt="">
                 
-                  <%=Blogs.Date%>
+                  <%=Blogs.blogDate%>
                 </span>
-               <a href="/blog-detail/<%=Blogs.id%>" target="_blank"><%=Blogs.name%></a> 
+               <a href="/blog-detail/<%=Blogs.id%>" target="_blank"><%=Blogs.blogTitle%></a> 
                <h5></h5>
                 <!-- <a href="#">Read More</a> -->
               </div>
@@ -392,7 +392,7 @@
           </div>
           <!-- <%});%> -->
           <%}%>
-  </section>
+        </section>
   <!-- Latest Blog Section End -->
 
   <!-- --------------------------------------------------------------------------------------------- -->

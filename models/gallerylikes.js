@@ -20,6 +20,7 @@ type:String,
 });
 
 const UserLikeSchema = new mongoose.Schema({
+
   userid :{
    type:String,
   },
@@ -31,7 +32,7 @@ const UserLikeSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-
+  username:{type:String},
 }, {
   timestamps: true
 });

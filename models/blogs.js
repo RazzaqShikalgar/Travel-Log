@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const blogSchema =  new mongoose.Schema({
-name:{
+    blogTitle:{
     type:String,
     required:'This field is required'
 },
-Date:{
+blogDate:{
     type:String,
     required:'This field is required'
 },

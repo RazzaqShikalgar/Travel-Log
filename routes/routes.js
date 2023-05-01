@@ -71,11 +71,11 @@ var upload = multer({
   }),
 }).single("image");
 
-// route.use(
-//   fileUpload({
-//     useTempFiles: true,
-//   })
-// );
+route.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 
 // Middleware function for checking the user is legit or not
 async function check(req, res, next) {
@@ -94,6 +94,7 @@ async function check(req, res, next) {
     const data = jwt.verify(token, JWT_SECRET);
     const user = await User.findOne({ email: data.email });
     req.data = user;
+    // console.log(user._id);
     next();
     return;
   } catch (err) {
@@ -120,10 +121,10 @@ route.get("/", check, async (req, res) => {
     gallery,
   });
 
-  route.post("/blog-comment",async(req,res)=>{
-    // const {email,doyoutravel,whyconnect} = req.params;
-    // console.log(email,doyoutravel,whyconnect);
-  });
+  // route.post("/blog-comment",async(req,res)=>{
+  //   // const {email,doyoutravel,whyconnect} = req.params;
+  //   // console.log(email,doyoutravel,whyconnect);
+  // });
 //BLogs mandvi
 // route.get('/', blogsControllers.index);
 // const file = req.files.image;
@@ -138,11 +139,12 @@ route.get("/", check, async (req, res) => {
       const galleryid = req.params.id;
       const user = req.data;
       // Find the user's likes document or create a new one if it doesn't exist
-      let userLikes = await UserLike.findOne({ userid: user._id });
+      let userLikes = await UserLike.findOne({ userid: user._id,});
   
       if (!userLikes) {
         userLikes = new UserLike({
           userid: user._id,
+          username:user.name,
           items: [],
         });
       }
@@ -865,9 +867,7 @@ route.post("/signup",async (req, res) => {
 });
 
 route.post("/connect-us",async(req,res)=>{
- const email = req.body.email;
- const doyoutravel = req.body.doyoutravel;
- const whyconnect = req.body.whyconnect;
+ const {email ,doyoutravel,whyconnect} = req.body;
  console.log(email,doyoutravel,whyconnect);
  const newquery = new Connect({
   email,
@@ -876,7 +876,7 @@ route.post("/connect-us",async(req,res)=>{
  });
  const question = await newquery.save();
  console.log(question,"Saved");
- res.redirect("/advisor");
+ res.render("advisor");
 });
 
 route.post('/logout', async (req, res) => {
