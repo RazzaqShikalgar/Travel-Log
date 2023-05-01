@@ -20,13 +20,16 @@ const Place = require("../models/place");
 const Blacklist = require("../models/blacklist");
 // const User = require('../models/signup');
 const Cards = require("../models/cards");
+const Connect = require("../models/connectus");
 const DataModel = require("../models/data");
 const path = require("path");
+// const blogsControllers = require('../controllers/blogsControllers');
 const Gallery = require("../models/gallery");
 const fetch = require("node-fetch");
 // import fetch from "node-fetch";
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
+
 const cloudinary = require("cloudinary").v2;
 const fileUpload = require("express-fileupload");
 const UserLike = require('../models/gallerylikes.js');
@@ -56,7 +59,7 @@ cloudinary.config({
 
 // Upload MiddleWare function
 
-const uploads = path.join(__dirname, "../public/uploads/");
+const uploads = path.join(__dirname, "./views/assets/imgs");
 var upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
@@ -68,11 +71,11 @@ var upload = multer({
   }),
 }).single("image");
 
-route.use(
-  fileUpload({
-    useTempFiles: true,
-  })
-);
+// route.use(
+//   fileUpload({
+//     useTempFiles: true,
+//   })
+// );
 
 // Middleware function for checking the user is legit or not
 async function check(req, res, next) {
@@ -117,55 +120,85 @@ route.get("/", check, async (req, res) => {
     gallery,
   });
 
+  route.post("/blog-comment",async(req,res)=>{
+    // const {email,doyoutravel,whyconnect} = req.params;
+    // console.log(email,doyoutravel,whyconnect);
+  });
+//BLogs mandvi
+// route.get('/', blogsControllers.index);
+// const file = req.files.image;
+//   cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+//     console.log(result.url); });
+// route.post('/', upload, blogsControllers.insert);
+
   //Gallery Likes
-  route.post('/like/:id',check, async (req, res) => {
+
+  route.post("/like/:id", check, async (req, res) => {
     try {
-      const userLike = await UserLike.findOne({user_id:req.data._id,gallery_id:req.params.id});
-      // console.log(req.data.name);
-      // console.log(req.params.id);
-      if(userLike){
-        // The user has already liked the gallery
-        console.log("already liked");
-        // Display a message
-        res.redirect('/?message=' + encodeURIComponent('You have already liked this gallery.'));
-      } else {
-        const gallery = await Gallery.findById(req.params.id);
-        console.log(gallery.likes);
-        gallery.likes++;
-        await gallery.save();
-        const newlike = new UserLike({user_id:req.data._id,gallery_id:req.params.id});
-        await newlike.save();
-        console.log("datasaved");
-        res.redirect('/#gallery');
+      const galleryid = req.params.id;
+      const user = req.data;
+      // Find the user's likes document or create a new one if it doesn't exist
+      let userLikes = await UserLike.findOne({ userid: user._id });
+  
+      if (!userLikes) {
+        userLikes = new UserLike({
+          userid: user._id,
+          items: [],
+        });
       }
+  
+      // Find the gallery image to be liked
+      const galleryImage = await Gallery.findById(galleryid);
+  
+      if (!galleryImage) {
+        return res.status(404).json({ message: "Gallery image not found" });
+      }
+  
+      // Check if the gallery image is already liked by the user
+      const existingLike = userLikes.items.find(
+        (item) => item.galleryId.toString() === galleryid
+      );
+  
+      if (existingLike) {
+        // If the gallery image is already liked by the user, increment the count
+        res.redirect("/?message=Already+liked+this+image");
+        // userLikes.Total += userLikes.items.length;
+        
+      } else {
+        // If the gallery image is not already liked by the user, add it to the items array
+        const newLike = {
+          galleryId: galleryImage._id,
+          Image: galleryImage.image,
+          Title: galleryImage.namee,
+          postedby:galleryImage.postedby,
+          description:galleryImage.description,
+        };
+        userLikes.items.push(newLike);
+        // const userlikedid = userLikes._id;
+        // console.log(userlikedid);
+        // Increment the number of likes for the gallery image
+        galleryImage.likes += 1;
+        await galleryImage.save();
+      }
+      userLikes.Total = userLikes.items.length;
+      // Save the updated likes document to the database
+      const savedLikes = await userLikes.save();
+      //Adding like database id to usre database 
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      {gallerylike:savedLikes._id },
+      { new: true }
+    );
+    console.log("id added to user database",updatedUser);
+      console.log("Likes saved to database:", savedLikes);
+      res.redirect("/?message=Thank+you+for+liking+the+image!");
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: 'Error liking image' });
-    } 
+      res.status(500).json({ message: "Internal server error" });
+    }
   });
-  
-  // console.log(categories);
-
-  //   try {
-  //   const limitNumber = 8;
-  //   const blognumber = 3;
-  //   const cardNumber = 4;
-  //   const galleryNumber =20;
-  //   // const User = 1;
-  //   const categories = await Category.find({}).limit(limitNumber);
-  //   const blogs = await Blogs.find({}).limit(blognumber);
-  //   const cards = await Cards.find({}).limit(cardNumber);
-  //   const gallery = await Gallery.find({}).limit(galleryNumber);
-  //   const name="here";
-  //   res.render("list",{message:'',names:'',webname:name,categories ,blogs ,cards,gallery});
-  //   // console.log(categories);
-  // } catch (error) {
-  //   res.status(500).send({message: error.message || "Error Ocured"});
-  // }
 });
-// route.get("/",function(req,res){
-//   res.render("list",{message:'',names:'',webname:name,categories ,blogs ,cards,gallery});
-//  });
+  
 route.get("/login", function (req, res) {
   res.render("register", { message: "" });
 });
@@ -419,7 +452,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options2 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536",
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74",
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -435,7 +468,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options3 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536", //change5
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change5
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -463,7 +496,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options4 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536", //change5 //Attractions
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change5 //Attractions
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -490,7 +523,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options6 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "d77add82cfmsh1959a000594fd5ep1f01bfjsn36e5b2341ddf", //Free Images
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //Free Images
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -503,13 +536,16 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options9 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536", //change4
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change4
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
   const response9 = await fetch(url9, options9);
   const lodging = await response9.json();
+  // console.log(lodging.data);
   // console.log(lodging.data[0].result_type);  //lodging data
+
+  //hotels travel advisor
 
   res.render("advisor", {
     names: req.data.names,
@@ -561,13 +597,13 @@ route.get("/hotel/detail/:id", check, async (req, res) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536", //Getting Hotel Details
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //Getting Hotel Details
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
   const response = await fetch(url, options);
   const hoteldetails = await response.json();
-  // console.log(hoteldetails);
+  // console.log(hoteldetails.website);
   res.render("avail", {
     names: req.data.name,
     images: req.data.image,
@@ -586,7 +622,7 @@ route.post("/planner", check, async (req, res) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "d77add82cfmsh1959a000594fd5ep1f01bfjsn36e5b2341ddf",
+      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74",
       "X-RapidAPI-Host": "ai-trip-planner.p.rapidapi.com",
     },
   };
@@ -621,7 +657,7 @@ fetch(url, options)
   // const options1 = {
   //   method: "GET",
   //   headers: {
-  //     "X-RapidAPI-Key": "d77add82cfmsh1959a000594fd5ep1f01bfjsn36e5b2341ddf", //change4 //Free Images
+  //     "X-RapidAPI-Key": "d77add82cfmsh1959a000594fd5ep1f01bfjsn36e5b2341ddfxx", //change4 //Free Images
   //     "X-RapidAPI-Host": "free-images-api.p.rapidapi.com",
   //   },
   // };
@@ -646,37 +682,45 @@ fetch(url, options)
     location: location.data[0],
   });
 });
-// route.get("/planner",check,async(req,res)=>{
-//   const days =  req.body.days;
-//   const loc = req.body.location;
-//   console.log(days,loc);
-//   // res.render("detail");
-// });
+
 route.get("/profile", check, async(req, res)=>{
+  const user_id = req.data._id;
+  const galleryids = req.data.gallerylike; //getting the galleryid from user database
+  // const user_id = mongoose.Types.ObjectId(req.data._id)
+//  console.log(galleryids);
+ const galleryid = await UserLike.find({_id:galleryids})
+  // console.log(galleryid);
+  const items1 = galleryid[0];
+  // console.log(items1);
   const email = req.data.email;
   const number = req.data.phone;
   const name = "mumbai";
   const uploads =  await Blogs.countDocuments({name:name});
-  console.log(uploads);
+  // console.log(uploads);
   res.render("profile", {
     names: req.data.name,
     images: req.data.image,
     email,
     number,
+    likes:items1,
+    likedata:items1.items
   });
 });
 
 route.get("/view-liked-posts",check,async(req,res)=>{
   const user_id = req.data._id;
+  const galleryids = req.data.gallerylike; //getting the galleryid from user database
   // const user_id = mongoose.Types.ObjectId(req.data._id)
-  const userlike = await UserLike.findOne({user_id:req.data._id});
-  console.log(userlike);
-  // console.log(userlike._id);
-  res.render("viewliked");
+//  console.log(galleryids);
+ const galleryid = await UserLike.find({_id:galleryids})
+  console.log(galleryid);
+  const items1 = galleryid[0];
+  console.log(items1);
+  // res.redirect("/");
+  res.render("viewliked",{likes:items1,likedata:items1.items});
 });
 
 route.post("/view-liked-posts",check,async(req,res)=>{
-  
   res.render("viewliked",{userlike});
 });
 
@@ -704,7 +748,7 @@ route.get("/places", function (req, res) {
   res.render("places");
 });
 
-route.post("/admin/imageupload",async(req,res,next) => {
+route.post("/admin/imageupload",check,async(req,res,next) => {
   const file = req.files.image;
   try {
     const cloudinaryResult = await cloudinary.uploader.upload(file.tempFilePath);
@@ -712,8 +756,8 @@ route.post("/admin/imageupload",async(req,res,next) => {
     const namee = req.body.namee;
     const description = req.body.description;
     const image = cloudinaryResult.url;
-
-    const newImage = await Gallery({ namee, description, image });
+    const postedby = req.data.name;
+    const newImage = await Gallery({ namee, description, image,postedby});
     await newImage.save();
 
     return res.render("Imageform", { message: "Document added successfully" });
@@ -751,11 +795,28 @@ route.post("/admin/categoryupload",async(req, res, next) => {
 //   }
 //   })
 // }).single('file');
+// route.get("/uploadng-image-blog",{
+
+// });
+route.post("/uploadng-image-blog",async (req, res) => {
+  try {
+    let data = JSON.parse(JSON.stringify(req.body));
+    const result = await cloudinary.uploader.upload(req.file.path);
+    data.blogTitleImg = result.secure_url;
+    let newblogs = new blogs(data);
+    await newblogs.save();
+    res.send("Blog added successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error adding blog");
+  }
+});
 
 route.post("/signup",async (req, res) => {
   const file = req.files.image;
   cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
     console.log(result.url);
+
   JWT_SECRET =
     "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu";
 
@@ -803,19 +864,21 @@ route.post("/signup",async (req, res) => {
 });
 });
 
-//logout
-// route.post("/logout",async(req,res)=>{
-//     const token = req.cookies.jwtToken.split(' ')[1];
-//     const blacklist = new Blacklist({
-//       token,
-//     });
-//     await blacklist.save();
-//     res.clearCookie('jwt');
+route.post("/connect-us",async(req,res)=>{
+ const email = req.body.email;
+ const doyoutravel = req.body.doyoutravel;
+ const whyconnect = req.body.whyconnect;
+ console.log(email,doyoutravel,whyconnect);
+ const newquery = new Connect({
+  email,
+  doyoutravel,
+  whyconnect,
+ });
+ const question = await newquery.save();
+ console.log(question,"Saved");
+ res.redirect("/advisor");
+});
 
-//     // Redirect the user to the login page
-//     res.redirect('/login');
-//     res.json({ message: 'Logged out successfully' });
-// });
 route.post('/logout', async (req, res) => {
   try {
     // Retrieve the JWT token from the Authorization header
@@ -841,7 +904,13 @@ route.post('/logout', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
+route.get("/blog/upload",async(req,res)=>{
+res.render("userblog");
+});
+route.post("/blog/upload",async(req,res)=>{
+ const {blogTitle,blogCity,blogCountry,blogPlace,blogDescription,blogTransport,blogDate,blogBudget,blogCategory} = req.body;
+ 
+});
 
 //Login Page
 route.post("/login", async(req, res)=>{

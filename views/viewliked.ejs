@@ -73,29 +73,19 @@
     <div class="container">
       <h1>Posts Liked by User</h1>
       <ul class="post-list">
-        <li class="post-item">
-          <img class="post-image" src="https://picsum.photos/id/1/100/100" alt="Post 1">
-          <div class="post-details">
-            <h2 class="post-title">Post 1 Title</h2>
-            <p class="post-author">Posted by Author 1</p>
-            <p class="post-date">Posted on January 1, 2022</p>
-          </div>
-        </li>
-        <li class="post-item">
-          <img class="post-image" src="https://picsum.photos/id/2/100/100" alt="Post 2">
-          <div class="post-details">
-            <h2 class="post-title">Post 2 Title</h2>
-            <p class="post-author">Posted by Author 2</p>
-            <p class="post-date">Posted on February 1, 2022</p>
-          </div>
-        </li>
-        <li class="post-item">
-          <img class="post-image" src="https://picsum.photos/id/3/100/100" alt="Post 3">
-          <div class="post-details">
-            <h2 class="post-title">Post 3 Title</h2>
-            <p class="post-author">Posted by Author 3</p>
-            <p class="post-date">Posted</p>
-             </li>
-    </ul>
+        <% if(likes != '')%>
+          
+          <% likedata.forEach(function(likedata,index) { %>
+            <li class="post-item">
+              <img class="post-image" src="<%= likedata.Image %>" alt="">
+              <div class="post-details">
+                <h2 class="post-title"><%= likedata.Title %></h2>
+                <p class="post-author">Posted by :<%=likedata.postedby %></p>
+                <p class="post-date">Description:<%=likedata.description%></p>
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+    </div>
   </body>
 </html>

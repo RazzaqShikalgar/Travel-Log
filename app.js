@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require('cors') ;
-const blogsRoutes = require( './api/routes/blogs' ) ;
+const cors = require('cors');
+// const blogsRoutes = require( './api/routes/blogs');
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 // const session = require('express-session');
@@ -12,12 +12,13 @@ const cookieParser = require("cookie-parser");
 const multer = require('multer');
 const passport = require("passport");
 const encrypt = require("mongoose-encryption");
+const blogsRoutes = require( './routes/blogs.js' ) ;
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary").v2;
-
+// const blogs = require("./routes/blogs.js")
 // const blogsRoutes = require( './api/routes/blogs' ) ;
 // //Models and Controller Exports --------------------------------
 // const a = require('./controllers/photocontroller.js');
@@ -60,36 +61,38 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 // mongoose.set("useCreateIndex", true);
 app.use(cors( )) ;
 app.use(bodyParser.json());
-app.use(bodyParser. text({type: '/'}));
+// app.use(bodyParser. text({type: '/'}));
 app.use(routes);
+app.use('/api/blogs', blogsRoutes) ;
 app.use(
   fileUpload({
     useTempFiles: true,
   })
 );
 
-app.post("upload/cloud", async (req, res) => {
-  const file = req.files.image;
-  const result = await cloudinary.uploader.upload(file.tempFilePath, {
-    public_id: `${Date.now()}`,
-    resource_type: "auto",
-    folder: "images",
-  });
-  res.json(result);
-});
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
-  }
-});
-const upload = multer({ storage: storage });
 
 
-app.use('/api/blogs', blogsRoutes) ;
+// app.post("upload/cloud", async (req, res) => {
+//   const file = req.files.image;
+//   const result = await cloudinary.uploader.upload(file.tempFilePath, {
+//     public_id: `${Date.now()}`,
+//     resource_type: "auto",
+//     folder: "images",
+//   });
+//   res.json(result);
+// });
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + '-' + file.originalname)
+//   }
+// });
+// const upload = multer({ storage: storage });
+
+
 
 app.get('/ui', function(req, res) {
   res.render('index');
@@ -100,11 +103,11 @@ app.get('/ui/home', function(req, res) {
   // C:/api/views/.ejs
 });
 app.get('/ui/createBlog', function(req, res) {
-  res.render('createBlog');
+  res.render('postBlog');
   // C:/api/views/.ejs
 });
 app.get('/ui/myBlogs', function(req, res) {
-  res.render('myBlogs');
+  res.render('myBlogs')
   // C:/api/views/.ejs
 });
 

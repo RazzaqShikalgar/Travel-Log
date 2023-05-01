@@ -308,8 +308,8 @@
               <%= Gallery.name %>
             </h3>
             <form action="/like/<%=Gallery.id%>" method="POST">
-          <button class="like-button" data-gallery-id="<%=Gallery._id%>" style="position: absolute; top: 0; right: 0; padding: 5px;">
-              <i class="fas fa-heart"></i><span style="color:white;padding-top:7px; font-weight: 700; background-color: black;padding:10px; border-radius: 60%;"   class="likes-count"><%=Gallery.likes%></span>
+          <button class="like-button" data-gallery-id="<%=Gallery._id%>" style="position: absolute; top: 0; right: 0; ">
+              <i class="fa fa-heart" style="background-color: rgba(15, 11, 11, 0.854); padding:9px; border-radius: 80%;"><span style="color:whitesmoke; font-weight: bold; border-radius: 30%;"   class="likes-count"><%=Gallery.likes%></span></i>
           </button>
         </form>
           </div>
@@ -420,7 +420,7 @@
             </div>
             <div class="person-info">
               <h3 class="full-name">Razzaq Shikalgar</h3>
-              <span class="speciality">Web Developer</span>
+              <span class="speciality">Full Stack Web Developer</span>
             </div>
           </div>
         </div>

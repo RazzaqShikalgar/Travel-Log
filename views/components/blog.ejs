@@ -1,21 +1,62 @@
-<div class="alert alert-dismissible alert-info">
-    <div class="row-container">
-        <h2>Blog Title</h2>
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h3 id="blogTitle">Blog Title</h3>
     </div>
-    <div class="row-container">
-        <div class="col-md-4">
-            <img style="height:200px;width:300px" src="https://plus.unsplash.com/premium_photo-1671659205352-1c9aa30b6dc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Girl in a jacket">
-            <figure class="text-center">
-                <blockquote class="blockquote">
-                    <p class="mb-0">Place name.</p>
-                </blockquote>
-                <figcaption class="blockquote-footer">
-                    Tokyo, <cite title="Source Title">Japan</cite>
-                  </figcaption>
-            </figure>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <img id="image" style="height:250px;" src="https://plus.unsplash.com/premium_photo-1671659205352-1c9aa30b6dc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Girl in a jacket">
+                <figure class="text-center" style="margin-right: 50%;">
+                    <blockquote class="blockquote">
+                        <p id="blogPlace" class="mb-0">-</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        <span id="blogCity"></span>, <cite title="Source Title" id="blogCountry">-</cite>
+                    </figcaption>
+                </figure> 
+            </div>
+            <div class="col-md-4">
+                <div class="row rows-col-3">
+                    <div class="col">
+                        <strong class="card-title">Date</strong>
+                        <p class="card-text" id="blogDate">
+                            -
+                        </p>
+                    </div>
+                    <div class="col">
+                        <strong class="card-title">Budget</strong>
+                        <p class="card-text" id="blogBudget">
+                            -
+                        </p>
+                    </div>
+                    <div class="col">
+                        <strong class="card-title">Stay</strong>
+                        <p class="card-text" id="blogStay">
+                            -
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong class="card-title">Category</strong>
+                        <p class="card-text" id="blogCategory">
+                            -
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <strong class="card-title">Transport</strong>
+                        <p class="card-text" id="blogTransport">
+                            -
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-
+        <div class="row">
+            <h5>Summary</h5>
+            <p class="card-text" id="blogDescription">
+                -
+            </p>
         </div>
     </div>
 </div>

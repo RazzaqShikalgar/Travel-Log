@@ -1,16 +1,38 @@
 const mongoose = require('mongoose');
 
-const UserLikeSchema = new mongoose.Schema({
-  user_id: {
-    type:String,
-    ref: 'User',
+const gallerylikeSchema = new mongoose.Schema({
+  galleryId: {
+    type: String,
     required: true
   },
-  gallery_id: {
+  Image:{
     type:String,
-    ref: 'Gallery',
-    required: true
-  }
+  },
+  Title:{
+type:String,
+  },
+postedby:{
+type:String,
+  },
+  description:{
+  type:String,
+  },
 });
 
+const UserLikeSchema = new mongoose.Schema({
+  userid :{
+   type:String,
+  },
+  items: {
+    type: [gallerylikeSchema],
+    default: []
+  },
+  Total: {
+    type: Number,
+    default: 0
+  },
+
+}, {
+  timestamps: true
+});
 module.exports = mongoose.model('UserLike', UserLikeSchema);

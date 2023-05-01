@@ -711,7 +711,9 @@
     background-color: #172b4d;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
   }
-  
+  .material-symbols-outlined{
+    font-size: 13px;
+  }
   .btn-default:hover {
     color: #fff;
     border-color: #172b4d;
@@ -2071,4 +2073,194 @@
   align-items: right;
   margin-left: 60rem;
 }
-              
+   
+.contains{
+  align-items: right;
+  width:600px;
+  height: 400px;
+  background-color: black;
+}
+/* Model Code */
+
+#modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  overflow: hidden;
+}
+#modal img {
+  width: 200px;
+  margin-bottom: 40px;
+}
+
+input[type="email"],
+input[type="password"],input[type="text"] {
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  width: 320px;
+  outline: none;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+}
+
+/* form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 330px;
+}
+form > p:last-child {
+  font-family: "Trip Sans Reg";
+  font-size: 10px;
+}
+
+.container-form > p {
+  font-family: "Trip Sans Reg";
+  margin-bottom: 30px;
+}
+
+label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+input[type="submit"] {
+  border: none;
+  background-color: #000;
+  color: var(--white);
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 19.8px;
+  padding: 13px 16px;
+  cursor: pointer;
+  outline: none;
+  width: 343px;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--greyHover);
+}
+
+.container-form {
+  position: relative;
+  width: 420px;
+  height: 630px;
+  box-sizing: border-box;
+  background-color: var(--white);
+  padding: 40px;
+  box-shadow: 0 0 4px 0 black;
+} */
+
+.container-form {
+  position: relative;
+  width: 520px;
+  height: 630px;
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: var(--white);
+  padding: 40px;
+  box-shadow: 0 0 4px 0 black;
+}
+
+#closeForm {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.display {
+  display: flex !important;
+}
+
+.hide {
+  overflow: hidden;
+}
+
+.cgv {
+  font-size: 12px;
+  margin-top: 30px;
+  line-height: 16px;
+}
+
+.cookies,
+.cgu {
+  text-decoration: underline;
+  font-family: "Trip Sans Med";
+}
+
+ /* Set global styles */
+ body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Define styles for the centered container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Define styles for the post list */
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Define styles for each post item */
+.post-item {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Define styles for the post image */
+.post-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+/* Define styles for the post title and author */
+.post-details {
+  flex-grow: 1;
+}
+
+/* Define styles for the post title */
+.post-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+/* Define styles for the post author */
+.post-author {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Define styles for the post date */
+.post-date {
+  font-size: 12px;
+  color: #999;
+  margin: 5px 0;
+}

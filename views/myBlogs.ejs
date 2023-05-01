@@ -1,17 +1,368 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="/css/modal.css">
         <%- include('common/head'); %>
+     <style>
+         #modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    overflow: hidden;
+  }
+  #modal img {
+    width: 200px;
+    margin-bottom: 40px;
+  }
+  
+  input[type="email"],
+  input[type="password"],input[type="text"] {
+    margin-bottom: 20px;
+    padding: 15px 10px;
+    width: 320px;
+    outline: none;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+  }
+  
+  form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 330px;
+  }
+  form > p:last-child {
+    font-family: "Trip Sans Reg";
+    font-size: 10px;
+  }
+  
+  .container-form > p {
+    font-family: "Trip Sans Reg";
+    margin-bottom: 30px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+  
+  input[type="submit"] {
+    border: none;
+    background-color: #000;
+    color: var(--white);
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 19.8px;
+    padding: 13px 16px;
+    cursor: pointer;
+    outline: none;
+    width: 343px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: var(--greyHover);
+  }
+  
+  .container-form {
+    position: relative;
+    width: 420px;
+    height: 630px;
+    box-sizing: border-box;
+    background-color: var(--white);
+    padding: 40px;
+    box-shadow: 0 0 4px 0 black;
+  }
+  
+  #closeForm {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  
+  .display {
+    display: flex !important;
+  }
+  
+  .hide {
+    overflow: hidden;
+  }
+  
+  .cgv {
+    font-size: 12px;
+    margin-top: 30px;
+    line-height: 16px;
+  }
+  
+  .cookies,
+  .cgu {
+    text-decoration: underline;
+    font-family: "Trip Sans Med";
+  }
+  .add-comment {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+  
+     </style>
     </head>
     <body>
         <%- include('common/nav'); %> 
         <div class="container">
-            <h1>
-                Blogs
-            </h1>
-            <div>
-                All the blogs will be listed here
+            <div class="row">
+                <div class="d-flex justify-content-between my-5">
+                    <h1>
+                        My Blogs
+                    </h1>
+                    
+                    <div class="form-group">
+                        Filter By: 
+                        <select class="form-select" id="myBlogsCategory" onchange="getBlogs('blogCategory',this.value)">
+                            <option value="choose">Category</option>
+                            <option value="hill">Hill Station</option>
+                            <option value="beach">Beach</option>
+                            <option value="domestic">Domestic</option>
+                            <option value="international">International</option>
+                        </select>
+                      </div>
+                </div>
             </div>
+            <div id="previews" class="row">
+            </div>
+            <div id="blogPopup" class="popup-position"></div>
         </div>
+      
+         <!-- ---------- MODAL ---------- -->
+         <section id="modal">
+            <div class="container-form">
+              <i id="closeForm" class="icon-times"></i>
+              <img src="/images/logonew.JPG" alt="logo" />
+              <p>Welcome ; Wanna Connect us then fill out this simple survey form !</p>
+              <form id="contactForm" class="contact-form">
+                <label for="email">Email Id</label>
+                <input type="email" name="email" id="email" required placeholder="E-mail" />
+                <label for="password">Why you wan't to connect</label>
+                <input type="text" name="doyoutravel"  id="travel" required placeholder="Places you have visited till now...">
+                <label for="email">Write your Question...</label>
+                <input type="text" name="whyconnect"  id="question" required placeholder="Write your query here">
+                <button type="submit">Submit</button>
+                <!-- <input class="OpenForm" type="submit"  value="connect us" /> -->
+              </form>
+              <p class="cgv">
+                And continuing, you agree to our  
+                <span class="cgu">Terms of Service</span>and you confirm that you have 
+                <span class="cookies">read our Privacy and Cookies Policy.</span>
+              </p>
+            </div>
+          </section>
+  
     </body>
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+    getBlogs();
+    function getMonth(no) {
+        const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+        return months[no-1]; 
+    }
+    function getBlogs(optionKey, optionValue) {
+        const previewDiv = document.getElementById('previews');
+        previewDiv.innerHTML = `
+        <div class="w-50 d-flex justify-content-center">
+            <div class="progress  progress-striped active ">
+                <div class="progress-bar progress-bar-striped indeterminate" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>`;
+        let URL = 'http://localhost:3000/api/blogs';
+        if(optionKey && optionValue!=='choose'){
+            URL+='?'+optionKey+'='+optionValue
+        }
+        fetch(URL)
+            .then(res => res.json())
+            .then(function(response) {
+            let innerHtml = '';
+            previewDiv.innerHTML = '';
+            response.forEach(async function(res) {
+                let transport = 
+                    res.blogTransport === 'Train' 
+                        ? '<i class="fa-solid fa-train-subway"></i>' : 
+                        res.blogTransport === 'Car' 
+                            ? '<i class="fa-solid fa-car"></i>' : 
+                            '<i class="fa-solid fa-jet-fighter-up"></i>';
+                const category = res.blogCategory === 'hill' ? '<i class="fa-solid fa-mountain"></i>' : '<i class="fa-solid fa-umbrella-beach"></i>' 
+                const date = res.blogDate.split('-');
+                const detail = JSON.stringify(res);
+                const str = `
+                <div class='col-md-3' onclick='showBlog(${detail})'>
+                    <figure class="snip1527 card">
+                        <div class="image">
+                            <img src="${`${res.image}`}"  alt="pr-sample23" />
+                        </div>
+                        <figcaption>
+                            <div class="date">
+                                <span class="day">${date[2]}</span>
+                                <span class="month">${getMonth(date[1])}</span>
+                                </div>
+                                <h3>${res.blogTitle}</h3> 
+                                <p>${transport} ${category}</p>
+                                <p>₹ ${res.blogBudget}</p>
+                                <button id="openForm" >Add Comment</button>
+                        </figcaption>
+                    </figure>
+                </div> 
+                
+                `
+                innerHtml+=str;
+            });
+            previewDiv.innerHTML = innerHtml;
+        });
+    }
+
+    
+    function showBlog(details){
+        console.log(details._id);
+        const  blogid = details._id;
+        const blog = document.getElementById('blogPopup');
+        const innerHTML = `
+        <button id="openForm" onclick="openCommentForm('${blogid}')" class="add-comment">Add Comment</button>
+            <div class="popup-wrapper card border-primary" >
+                    <div class="card-header">
+                        <h5>${details.blogTitle}</h5>
+                        <button type="button" class="close" onclick="closePopup()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img id="image" style="height:250px;" src="${`${details.image}`}">
+                                <figure class="text-center" style="margin-right: 50%;">
+                                    <blockquote class="blockquote">
+                                        <p class="mb-0">${details.blogPlace}</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        <span>${details.blogCity}</span>, <cite title="Source Title">${details.blogCountry}</cite>
+                                    </figcaption>
+                                </figure> 
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row rows-col-3">
+                                    <div class="col">
+                                        <strong class="card-title">Date</strong>
+                                        <p class="card-text">
+                                            ${details.blogDate}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <strong class="card-title">Budget</strong>
+                                        <p class="card-text">
+                                            ${details.blogBudget}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <strong class="card-title">Stay</strong>
+                                        <p class="card-text">
+                                            ${details.blogStay}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong class="card-title">Category</strong>
+                                        <p class="card-text">
+                                            ${details.blogCategory}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong class="card-title">Transport</strong>
+                                        <p class="card-text">
+                                            ${details.blogTransport}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h5>Summary</h5>
+                            <p class="card-text">
+                                ${details.blogDescription}
+                            </p>
+                        </div>
+                    </div>
+            </div>
+         
+            `
+        blog.innerHTML = innerHTML;
+        const e = document.getElementById('blogPopup');
+        e.style.display = 'block';
+    }
+    function closePopup(){
+        var e = document.getElementById('blogPopup');
+        e.style.display = 'none';
+    }
+
+    function openCommentForm(blogid) {
+        console.log(blogid);
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeForm");
+
+  modal.style.display = "block";
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+
+$(document).ready(function() {
+    $("#contactForm").submit(function(e) {
+      e.preventDefault(); // prevent the form from submitting normally
+
+      // get the form data
+      var formData = {
+        email: $("input[name=email]").val(),
+        doyoutravel: $("input[name=doyoutravel]").val(),
+        whyconnect: $("input[name=whyconnect]").val()
+      };
+      // send the data using Ajax
+      $.ajax({
+        type: "POST",
+        url: "/blog-comment",
+        data: formData,
+        dataType: "json",
+        encode: true,
+        success: function(response) {
+          // handle the response from the server
+          console.log(response);
+          $("#modal").hide();
+          alert("Thank you for submitting your information!");
+        },
+        error: function(xhr, status, error) {
+          // handle the error
+          console.log(xhr.responseText);
+          alert("An error occurred while submitting your information. Please try again later.");
+        }
+      });
+    });
+  });
+</script>

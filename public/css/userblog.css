@@ -1,0 +1,105 @@
+/* Style for form elements */
+.form-control {
+    height: 50px;
+    font-size: 16px;
+    border-radius: 0;
+  }
+  
+  .form-group label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .form-group select.form-select {
+    height: 50px;
+  }
+  
+  .input-group-text {
+    height: 50px;
+  }
+  
+  /* Style for accordion buttons */
+  .accordion-button {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #f8f9fa;
+    border-radius: 0;
+  }
+  
+  .accordion-button:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #f8f9fa;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #f8f9fa;
+  }
+  
+  .accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #f8f9fa;
+  }
+  
+  /* Style for accordion body */
+  .accordion-collapse {
+    background-color: #fff;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    padding: 20px;
+  }
+  
+  /* Style for submit button */
+  #submitButton {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+    border-radius: 0;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  #submitButton:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+  }
+  
+  #submitButton:focus {
+    box-shadow: none;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  
+  /* Style for file input */
+  .form-control[type="file"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  
+  .form-control[type="file"]::-webkit-file-upload-button {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+    border-radius: 0;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .form-control[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+  }
+  
+  .form-control[type="file"]::-webkit-file-upload-button:focus {
+    box-shadow: none;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  

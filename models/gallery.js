@@ -14,6 +14,15 @@ image:{type:String},
         type:Number,
         default:0
             },
+postedby:{
+    type:String,
+},
+} ,{
+    timestamps:{
+        createdAt: "created_at",
+        updatedAt: "updated_at",
+        format: "%Y-%m-%d"
+    },
 });
 
 module.exports = mongoose.model('Gallery', gallerySchema); 

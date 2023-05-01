@@ -1,33 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const cloudinary = require("cloudinary").v2;
-const imageController = require('../controllers/imageController');
-cloudinary.config({
-    cloud_name: "dsswjmlin",
-    api_key: "164156195648782",
-    api_secret: "jzH8Kn65JibCVdvmBBcMJ8yZ55U",
-  });
-
-const uploads = path.join(__dirname, "../public/uploads/");
-var upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, uploads);
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-  }),
-}).single("image");
-  
-
+const path = require('path');
+const bodyParser = require("body-parser");
+const multer =  require("multer");
+const fileUpload = require("express-fileupload");
 //Require controller modules 
 const blogsControllers = require('../controllers/blogsControllers');
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
+cloudinary.config({
+  cloud_name: "dsswjmlin",
+  api_key: "164156195648782",
+  api_secret: "jzH8Kn65JibCVdvmBBcMJ8yZ55U",
+});
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "blogs",
+    allowed_formats: ["jpg", "png","jpeg"],
+    // transformation: [{ width: 500, height: 500, crop: "limit" }],
+  },
+});
+const upload = multer({ storage: storage });
 router.get('/', blogsControllers.index);
-router.post('/', blogsControllers.insert,imageController);
+
+router.post("/", upload.single("image"), blogsControllers.insert);
+// console.log(req.file);
 // router.put('/update/:id', blogsControllers.update);
 // router.delete('/delete/:id', blogsControllers.delete);
-
-
+router.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
+router.use(bodyParser. text({type: '/'}));
+router.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+router.use(bodyParser.json());
 module.exports = router;

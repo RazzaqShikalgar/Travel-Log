@@ -15,6 +15,8 @@ const userSchema =  new mongoose.Schema({
 
     cpassword : { type:String , required:true },
 
+    gallerylike:{type:String},
+
     image:{type:String},
 
     token:{type:String },
