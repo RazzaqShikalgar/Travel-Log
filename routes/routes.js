@@ -71,11 +71,11 @@ var upload = multer({
   }),
 }).single("image");
 
-route.use(
-  fileUpload({
-    useTempFiles: true,
-  })
-);
+// route.use(
+//   fileUpload({
+//     useTempFiles: true,
+//   })
+// );
 
 // Middleware function for checking the user is legit or not
 async function check(req, res, next) {
@@ -122,8 +122,8 @@ route.get("/", check, async (req, res) => {
   });
 
   // route.post("/blog-comment",async(req,res)=>{
-  //   // const {email,doyoutravel,whyconnect} = req.params;
-  //   // console.log(email,doyoutravel,whyconnect);
+  //   const {email,doyoutravel,whyconnect} = req.body;
+  //   console.log(email,doyoutravel,whyconnect,"this is your comment");
   // });
 //BLogs mandvi
 // route.get('/', blogsControllers.index);
@@ -697,8 +697,8 @@ route.get("/profile", check, async(req, res)=>{
   const email = req.data.email;
   const number = req.data.phone;
   const name = "mumbai";
-  const uploads =  await Blogs.countDocuments({name:name});
-  // console.log(uploads);
+  const uploads =  await Blogs.findById({userid:user_id});
+  console.log(uploads);
   res.render("profile", {
     names: req.data.name,
     images: req.data.image,
@@ -961,4 +961,4 @@ route.post('/search',async(req, res) => {
   res.render('')
 });
 
-module.exports = route;
+module.exports = {route,check};

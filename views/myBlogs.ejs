@@ -117,6 +117,58 @@
   padding: 10px;
   font-size: 16px;
 }
+.comment-container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.comment-container h4 {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: auto;
+  margin-bottom: 5px;
+}
+
+.comment-container p {
+  font-size: 14px;
+    font-family: auto;
+  margin-bottom: 10px;
+}
+ h1 {
+     /* font-size: 2.5rem; */
+     font-size: 1.5rem;
+    margin: auto;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-family: auto;
+    font-weight: bold;
+    background-color: lightgrey;
+    width: 310px;
+}
+
+.comment-container p:last-child {
+  margin-bottom: 0;
+}
+#commentsContainer {
+  background-color: white;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.comment {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
   
      </style>
     </head>
@@ -153,12 +205,12 @@
               <img src="/images/logonew.JPG" alt="logo" />
               <p>Welcome ; Wanna Connect us then fill out this simple survey form !</p>
               <form id="contactForm" class="contact-form">
-                <label for="email">Email Id</label>
-                <input type="email" name="email" id="email" required placeholder="E-mail" />
-                <label for="password">Why you wan't to connect</label>
-                <input type="text" name="doyoutravel"  id="travel" required placeholder="Places you have visited till now...">
-                <label for="email">Write your Question...</label>
-                <input type="text" name="whyconnect"  id="question" required placeholder="Write your query here">
+                <label for="email">Your Name</label>
+                <input type="text" name="name" id="email" required placeholder="Your Full Name " />
+                <label for="password">Comment</label>
+                <input type="text" name="comment"  id="travel" required placeholder="Places you have visited till now...">
+                <!-- <label for="email">Write your Question...</label>
+                <input type="text" name="whyconnect"  id="question" required placeholder="Write your query here"> -->
                 <button type="submit">Submit</button>
                 <!-- <input class="OpenForm" type="submit"  value="connect us" /> -->
               </form>
@@ -221,7 +273,7 @@
                                 <h3>${res.blogTitle}</h3> 
                                 <p>${transport} ${category}</p>
                                 <p>₹ ${res.blogBudget}</p>
-                                <button id="openForm" >Add Comment</button>
+                                
                         </figcaption>
                     </figure>
                 </div> 
@@ -238,6 +290,7 @@
         console.log(details._id);
         const  blogid = details._id;
         const blog = document.getElementById('blogPopup');
+        fetchComments(blogid);
         const innerHTML = `
         <button id="openForm" onclick="openCommentForm('${blogid}')" class="add-comment">Add Comment</button>
             <div class="popup-wrapper card border-primary" >
@@ -305,7 +358,9 @@
                         </div>
                     </div>
             </div>
-         
+            <h1>Comment Section</h1>
+            <div id="commentsContainer" class="comments-container"></div>
+            
             `
         blog.innerHTML = innerHTML;
         const e = document.getElementById('blogPopup');
@@ -316,10 +371,35 @@
         e.style.display = 'none';
     }
 
+/// function to fetch comments for a particular blog and update the HTML
+async function fetchComments(blogid) {
+  const response = await fetch(`/blogs/${blogid}/comments`);
+  const { comments } = await response.json();
+  const commentsContainer = document.getElementById('commentsContainer');
+  
+  // clear the container before adding new comments
+  commentsContainer.innerHTML = '';
+
+  // populate the container with the fetched comments
+  comments.forEach(comment => {
+    console.log(comment);
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('comment');
+    commentDiv.innerHTML = `
+    <h4> Name:<strong> ${comment.name}</strong></h4>
+      <p>comment: ${comment.comment}</p>
+    `;
+    commentsContainer.appendChild(commentDiv);
+  });
+}
+
     function openCommentForm(blogid) {
         console.log(blogid);
   const modal = document.getElementById("modal");
   const closeBtn = document.getElementById("closeForm");
+
+   // fetch comments for the blog
+   fetchComments(blogid);
 
   modal.style.display = "block";
 
@@ -332,37 +412,38 @@
       modal.style.display = "none";
     }
   }
+   // store the blogid in a hidden input field inside the form
+   var form = document.querySelector('#contactForm');
+  var input = document.createElement('input');
+  input.setAttribute('type', 'hidden');
+  input.setAttribute('name', 'blogid');
+  input.setAttribute('value', blogid);
+  form.appendChild(input);
 }
 
-$(document).ready(function() {
-    $("#contactForm").submit(function(e) {
-      e.preventDefault(); // prevent the form from submitting normally
+// get the form element and add an event listener to its submit button
+var form = document.querySelector('#contactForm');
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the form from submitting normally
 
-      // get the form data
-      var formData = {
-        email: $("input[name=email]").val(),
-        doyoutravel: $("input[name=doyoutravel]").val(),
-        whyconnect: $("input[name=whyconnect]").val()
-      };
-      // send the data using Ajax
-      $.ajax({
-        type: "POST",
-        url: "/blog-comment",
-        data: formData,
-        dataType: "json",
-        encode: true,
-        success: function(response) {
-          // handle the response from the server
-          console.log(response);
-          $("#modal").hide();
-          alert("Thank you for submitting your information!");
-        },
-        error: function(xhr, status, error) {
-          // handle the error
-          console.log(xhr.responseText);
-          alert("An error occurred while submitting your information. Please try again later.");
-        }
-      });
-    });
+  // get the form data and convert it to JSON
+  var formData = new FormData(form);
+  var jsonData = {};
+  formData.forEach(function(value, key) {
+    jsonData[key] = value;
   });
+
+  // send the form data to the server
+  fetch('/blog-comment', {
+    method: 'post',
+    body: JSON.stringify(jsonData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(function(response) {
+    // handle the server's response here
+  }).catch(function(error) {
+    // handle any errors here
+  });
+});
 </script>

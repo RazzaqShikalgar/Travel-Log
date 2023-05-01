@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 // const session = require('express-session');
 // const models = require()
-const routes = require("./routes/routes.js");
+const {route} = require("./routes/routes.js");
+const {check} = require("./routes/routes.js");
 const cookieParser = require("cookie-parser");
 const multer = require('multer');
 const passport = require("passport");
@@ -30,6 +31,7 @@ const placess = require("./controllers/placecontroller.js");
 // const Blogs = require('./models/blogs');
 const Places = require("./models/place.js");
 const User = require("./models/signup");
+const Comment = require("./models/usercomment");
 // const Cards = require('./models/cards');
 // const Gallery = require('./models/gallery');
 
@@ -62,8 +64,47 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 app.use(cors( )) ;
 app.use(bodyParser.json());
 // app.use(bodyParser. text({type: '/'}));
-app.use(routes);
+app.use(route);
 app.use('/api/blogs', blogsRoutes) ;
+// app.post("/api/blogs",async(req,res)=>{
+//  const {blogTitle,image} = req.body;
+//  console.log(blogTitle,image);
+// });
+// route to fetch comments for a particular blog
+app.get('/blogs/:blogid/comments', async (req, res) => {
+  try {
+    const comments = await Comment.find({ blogid: req.params.blogid }).populate('user');
+    res.json({ comments });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+app.post("/blog-comment",check,async(req,res)=>{
+  const {name,comment,blogid} = req.body;
+  console.log("This is your blog id",blogid);
+  const userid = req.data._id;
+  // const name = req.body.name;
+  // const comment = req.body.comment;
+  console.log(name,comment,req.data._id,"this is your comment");
+  // Create a new comment document using the Comment model
+  const newComment = new Comment({
+    blogid,
+    name,
+    userid,
+    comment
+  });
+
+  try {
+    // Save the new comment to the database
+    const savedComment = await newComment.save();
+    res.json({ success: true, comment: savedComment });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+
+});
+
 app.use(
   fileUpload({
     useTempFiles: true,
