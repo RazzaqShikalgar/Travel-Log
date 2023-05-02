@@ -8,6 +8,7 @@ const fileUpload = require("express-fileupload");
 const blogsControllers = require('../controllers/blogsControllers');
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const check = require("../routes/routes.js")
 
 cloudinary.config({
   cloud_name: "dsswjmlin",

@@ -6,6 +6,8 @@ class Form {
     this.body = body;
     this.openForm();
     this.closeForm();
+    this.openForm2();
+    this.closeForm();
   }
 
   openForm() {
@@ -25,6 +27,13 @@ class Form {
 
 const form = new Form(
   document.querySelector("#openForm"),
+  document.querySelector("#closeForm"),
+  document.querySelector("#modal"),
+  document.querySelector(".body")
+);
+
+const form2 = new Form(
+  document.querySelector("#openForm2"),
   document.querySelector("#closeForm"),
   document.querySelector("#modal"),
   document.querySelector(".body")

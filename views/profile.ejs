@@ -125,6 +125,30 @@
       </div>
     </section>
 
+    <section id="modal2">
+      <div class="container-form">
+        <i id="closeForm2" class="fa fa-times"></i>
+        <img src="/images/logonew.JPG" alt="logo" />
+        
+          <h1>BLogs Uploaded by User</h1>
+          <ul class="post-list">
+            <% if(blogs != '')%>
+              
+              <% likedata.forEach(function(likedata,index) { %>
+                <li class="post-item">
+                  <img class="post-image" src="<%= likedata.Image %>" style="object-fit: cover; height: auto;" width="100%"  height="100%" alt="">
+                  <div class="post-details">
+                    <h2 class="post-title"><%= likedata.Title %></h2>
+                    <p class="post-author">Posted by :<%=likedata.postedby %></p>
+                    <p class="post-date">Description:<%=likedata.description%></p>
+                  </div>
+                </li>
+              <% }); %>
+            </ul>
+      </div>
+      </div>
+    </section>
+
     <div class="container-fluid mt--7">
       <div class="row">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -151,21 +175,21 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">22</span>
+                      <span class="heading"><%=blogs%></span>
                       <span class="description">UPLOADS</span>
-                      <button  class="btn btn-sm btn-default">Blog's  <i class="fa-solid fa-upload"></i></button>
+                      <button id="openForm2" class="btn btn-sm btn-default">Blog's  <i class="fa-solid fa-upload"></i></button>
                     </div>
                     <div>
                       <span class="heading"><%=likes.Total%></span>
                       <span class="description">Liked Photo</span>
-                      <button id="openForm"  class="btn btn-sm btn-default">Photos <i class="fa-regular fa-images"></i> </button>
+                      <button id="openForm" class="btn btn-sm btn-default">Photos <i class="fa-regular fa-images"></i> </button>
                       
                     </div>
                     <!-- <a href="/view-liked-posts" class="btn md-4 btn-sm btn-info float-left" style=" height: 35px;">Liked Content</a> -->
                     <div>
-                      <span class="heading">10</span>
+                      <span class="heading"><%=blogs%></span>
                       <span class="description">Liked Blogs</span>
-                      <button class="btn btn-sm btn-default" style="text-align: center;">Visit <i class="fa-solid fa-bolt"></i></button>
+                      <button id="openForm" class="btn btn-sm btn-default" style="text-align: center;">Visit <i class="fa-solid fa-bolt"></i></button>
                     </div>
                     <!-- <div>
                       <span class="heading">89</span>
@@ -284,7 +308,7 @@
     button.onclick = function () {
       container.classList.toggle("show");
     };
-
+  
   </script>
   <script src="/assets/js/main.js"></script>
   <script src="https://kit.fontawesome.com/b47f16b7db.js" crossorigin="anonymous"></script>

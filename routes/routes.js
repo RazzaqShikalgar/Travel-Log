@@ -73,7 +73,7 @@ var upload = multer({
 
 // route.use(
 //   fileUpload({
-//     useTempFiles: true,
+//     useTempFiles: true,  //Comment out when want to upload photo othet than blog
 //   })
 // );
 
@@ -697,7 +697,8 @@ route.get("/profile", check, async(req, res)=>{
   const email = req.data.email;
   const number = req.data.phone;
   const name = "mumbai";
-  const uploads =  await Blogs.findById({userid:user_id});
+  const count = await Blogs.countDocuments({ userid:user_id });
+// console.log(`User with id ${user_id} has ${count} blog posts`);
   console.log(uploads);
   res.render("profile", {
     names: req.data.name,
@@ -705,6 +706,8 @@ route.get("/profile", check, async(req, res)=>{
     email,
     number,
     likes:items1,
+    blogs:count,
+    blogupload : blogs,
     likedata:items1.items
   });
 });
