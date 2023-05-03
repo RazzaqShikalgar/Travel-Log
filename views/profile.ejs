@@ -92,7 +92,7 @@
             </h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see your added contents and make manage
               your future trips!</p>
-            <a href="#!" class="btn btn-info">Explore Blog's</a>
+            <a href="/ui/myblogs" class="btn btn-info">Explore Blog's</a>
           </div>
         </div>
       </div>
@@ -112,6 +112,7 @@
                   <img class="post-image" src="<%= likedata.Image %>" style="object-fit: cover; height: auto;" width="100%"  height="100%" alt="">
                   <div class="post-details">
                     <h2 class="post-title"><%= likedata.Title %></h2>
+                    <a href="/remove-like/<%=likedata.galleryId%>"><i class="fa-solid fa-trash-can"></i></a>
                     <p class="post-author">Posted by :<%=likedata.postedby %></p>
                     <p class="post-date">Description:<%=likedata.description%></p>
                   </div>
@@ -149,7 +150,7 @@
       </div>
     </section>
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--7">l
       <div class="row">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
           <div class="card card-profile shadow">
@@ -165,8 +166,8 @@
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
                 <!-- <button id="openForm">your Blogs</button> -->
-                <!-- <a href="/view-liked-posts" id="openForm" class="btn btn-sm btn-info ">Your Blogs</a> -->
-                <a href="/view-liked-posts" class="btn btn-sm btn-default float-right ">Wishlist <i class="fa fa-heart"></i></a>
+                <a href="#" id="openForm" class="btn btn-sm btn-info ">Liked Image's <i class="fa-solid fa-thumbs-up"></i></a>
+                <a href="/view-liked-posts" class="btn btn-sm btn-default float-right ">Your Blogs <i class="fa fa-heart"></i></a>
 
               </div>
             </div>
@@ -177,19 +178,19 @@
                     <div>
                       <span class="heading"><%=blogs%></span>
                       <span class="description">UPLOADS</span>
-                      <button id="openForm2" class="btn btn-sm btn-default">Blog's  <i class="fa-solid fa-upload"></i></button>
+                      <!-- <a href="/view-liked-posts"><button id="openForm2" class="btn btn-sm btn-default">Blog's  <i class="fa-solid fa-upload"></i></button></a> -->
                     </div>
                     <div>
-                      <span class="heading"><%=likes.Total%></span>
+                      <span class="heading"><%=likescount%></span>
                       <span class="description">Liked Photo</span>
-                      <button id="openForm" class="btn btn-sm btn-default">Photos <i class="fa-regular fa-images"></i> </button>
+                      <!-- <button id="openForm" class="btn btn-sm btn-default">Photos <i class="fa-regular fa-images"></i> </button> -->
                       
                     </div>
                     <!-- <a href="/view-liked-posts" class="btn md-4 btn-sm btn-info float-left" style=" height: 35px;">Liked Content</a> -->
                     <div>
                       <span class="heading"><%=blogs%></span>
                       <span class="description">Liked Blogs</span>
-                      <button id="openForm" class="btn btn-sm btn-default" style="text-align: center;">Visit <i class="fa-solid fa-bolt"></i></button>
+                      <!-- <button id="openForm" class="btn btn-sm btn-default" style="text-align: center;">Visit <i class="fa-solid fa-bolt"></i></button> -->
                     </div>
                     <!-- <div>
                       <span class="heading">89</span>

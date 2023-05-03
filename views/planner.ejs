@@ -1,53 +1,238 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/planner.css">
-    <title>Trip Planner</title>
+    <title>Schedule</title>
+
+    <style>
+
+/* Overall layout and styling */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #6a3b75;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.schedule-planner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fec9ff9e;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.683);
+  border-radius: 80px;
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.day {
+  margin-bottom: 60px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 15px 20px;
+  margin: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  transform: perspective(1px) translateY(0);
+  transition: transform 0.3s;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  background-color: var(--primary-color);
+  border-radius: 5px 0 0 5px;
+}
+
+li:nth-child(1)::before {
+  background-color: var(--primary-color);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+li .time {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+li .title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+li .description {
+  font-size: 16px;
+  color: #666;
+}
+
+li:hover {
+  transform: perspective(1px) translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+        /* Overall layout and styling */
+
+/* body { 
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.schedule-planner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #5a006e;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.day {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+/* Color scheme */
+
+.schedule-planner {
+  --primary-color: #bc1aa1;
+  --secondary-color: #ffcdfe;
+}
+
+h1 {
+  color:#000000;
+}
+
+.day:nth-child(1) li:nth-child(1) {
+  color: #54007b;
+}
+
+.day:nth-child(1) li:nth-child(2) {
+  color: #54007b;
+}
+
+.day:nth-child(1) li:nth-child(3) {
+  color: #54007b;
+}
+
+.day:nth-child(1) li:nth-child(4) {
+  color: #54007b;
+}
+
+.day:nth-child(2) li:nth-child(1) {
+  color: #54007b;
+}
+
+.day:nth-child(2) li:nth-child(2) {
+  color: #54007b;
+}
+
+.day:nth-child(2) li:nth-child(3) {
+  color: #54007b;
+}
+
+.day:nth-child(2) li:nth-child(4) {
+  color: #54007b;
+}
+
+.day:nth-child(3) li:nth-child(1) {
+  color: #54007b;
+}
+
+.day:nth-child(3) li:nth-child(2) {
+  color: #54007b;
+}
+
+.day:nth-child(3) li:nth-child(3) {
+  color: #54007b;
+}
+
+.day:nth-child(3) li:nth-child(4) {
+  color: #54007b;
+}
+
+    </style>
 </head>
 <body>
-    <h1>This is My Trip Planned</h1>
-    <div class="plan-container">
-        <% if(plans !=''){ %>
-          <% plans.forEach(function(plans, index){ %>
-            <div class="plan-day" id="day<%=index+1%>">
-              <div class="plan-header">
-                <h2><%=plans.day%></h2>
-                <button class="plan-toggle"><i class="fas fa-angle-down"></i></button>
-              </div>
-              <div class="plan-activities">
-                <% var activity = plans.activities; %>
+  <div class="schedule-planner">
+    <h1>Schedule Planner</h1>
+  <% if(plans !=''){ %>
+    <% plans.forEach(function(plans, index){ %>
+  <div class="day">
+    <h2>Day <%=plans.day%></h2>
+    <% var activity = plans.activities; %>
                 <% activity.forEach(function(activity, index){ %>
-                  <div class="activity">
-                    <h2><%=activity.time%></h2>
-                    <h2><%=activity.description%></h2>
-                  </div>
-                <% }); %>
-              </div>
-            </div>
-          <% }); %>
+    <ul>
+      <li><%=activity.time%> - <%=activity.description%></li>
+    </ul>
+    <% }); %>
+  </div>
+  <% }); %>
         <% } %>
-      </div>
-      
-      
-      <script>
-        // Get all the plan days
-        const planDays = document.querySelectorAll('.plan-day');
-      
-        // Loop through each plan day
-        planDays.forEach(function(planDay) {
-          // Get the plan toggle button for the current plan day
-          const planToggle = planDay.querySelector('.plan-toggle');
-      
-          // Add click event listener to plan toggle button
-          planToggle.addEventListener('click', function() {
-            // Toggle active class on plan day
-            planDay.classList.toggle('active');
-          });
-        });
-      </script>
-      
+</div>
 </body>
 </html>

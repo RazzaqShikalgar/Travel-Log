@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
 const blogsSchema = new mongoose.Schema({
+    profileimage:String,
+    username:String,
     userid:String,
     blogTitle: String,
     blogCity: String,
@@ -10,6 +12,7 @@ const blogsSchema = new mongoose.Schema({
     blogTransport:String,
     blogDate:String,
     blogBudget: String,
+    blogStay:String,
     blogCategory: String,
     image: String
 });

@@ -16,6 +16,7 @@ const cards = require("../controllers/cardscontroller.js");
 // const placess = require('./controllers/placecontroller.js');
 const Category = require("../models/category");
 const Blogs = require("../models/blogs");
+const Blog = require("../models/blogsModel");
 const Place = require("../models/place");
 const Blacklist = require("../models/blacklist");
 // const User = require('../models/signup');
@@ -201,6 +202,41 @@ route.get("/", check, async (req, res) => {
   });
 });
   
+route.get('/remove-like/:id', check, async (req, res) => {
+  const userId = req.data._id;
+  const likeId = req.params.id;
+console.log(likeId);
+  try {
+    const result = await UserLike.updateOne(
+      { userid: userId },
+      // result.items.pull({galleryId: likeId }),
+      { $pull: { 'items': { galleryId: likeId } } },
+      { arrayFilters: [{ 'items.galleryId': likeId }] }
+    );
+
+    // if (result.nModified > 0) {
+    //   res.redirect("/profile?message=Liked+removed+successfully!");
+    //   res.redirect('/gallery-likes');
+    // } else {
+      console.log(' like was removed');
+      res.redirect("/profile?message=Liked+removed+successfully!");
+    // }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+// In this code, we define a DELETE route that takes the IDs of the gallery and the like to be deleted as parameters. The findOneAndUpdate method is used to find the gallery with the specified ID and update it by pulling the like with the specified ID from the likes array using the $pull operator. The { new: true } option is used to return the updated document instead of the original one.
+
+// Note that this assumes that the likes array is an array of objects with a unique _id property for each like. If your data is structured differently, you may need to modify the code accordingly.
+
+
+
+
+
+
+
 route.get("/login", function (req, res) {
   res.render("register", { message: "" });
 });
@@ -246,140 +282,7 @@ route.get("/blog", check, function (req, res) {
   res.render("blog", { isAuthenticated, user: req.data });
 });
 
-// route.get("/location/:id", check, async (req, res) => {
-//   const id = req.params.id;
-//   // const name = req.params.namee;
-//   // console.log(name);
-//   // const categorys = req.params.category;
-//   const category = await Category.findById(id);
-//   console.log(category.namee);
-//   const placesss = await Place.find({'category':category.namee});
 
-// // console.log(placesss);
-// // const fetch = require('node-fetch');
-
-// // const url = 'https://travel-places.p.rapidapi.com/';
-
-// // const options = {
-  // //   method: 'POST',
-// //   headers: {
-// //     'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-// //     'X-RapidAPI-Host': 'travel-places.p.rapidapi.com'
-// //   }
-// // };
-// const country = category.category;
-// const initials = country.slice(0,2);
-// // console.log(initials);
-// const fetch = require('node-fetch');
-
-// //Latitude & Longitude
-// const url = `https://opentripmap-places-v1.p.rapidapi.com/en/places/geoname?name=${category.namee}&country=${initials}`;
-
-// const options = {
-  //   method: 'GET',
-  //   headers: {
-//     'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-//     'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
-//   }
-// };
-
-// // try{
-//   const response = await fetch(url, options);
-//   const data = await response.json();
-//   const lat= data.lat;
-//   const lon = data.lon;
-//   const url1 = `https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=5000&lon=${lon}&lat=${lat}&kinds=natural`;
-//   console.log(lat)
-//   const options1 = {
-  //     method: 'GET',
-//     headers: {
-  //       'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-  //       'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
-//     }
-//   };
-
-//   fetch(url1, options1)
-//   .then(res => res.json())
-//   .then(json => console.log(json.features[0].properties))
-//   .catch(err => console.error('error:' + err));
-
-//   //Location_id
-// const url2 = `https://travel-advisor.p.rapidapi.com/locations/auto-complete?query=${category.namee}&lang=en_US&units=km`;
-
-// const options2 = {
-//   method: 'GET',
-//   headers: {
-//     'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-//     'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-//   }
-// };
-
-// const response2 = await  fetch(url2, options2);
-// const location_id = await response2.json();
-// // console.log(location_id.data.name);
-// console.log(location_id.data[0].result_object.location_id);
-
-//Location API
-
-// const url3 = `https://travel-advisor.p.rapidapi.com/attractions/list?location_id=${location_id.data[0].result_object.location_id}&currency=USD&lang=en_US&lunit=km&min_rating=5&sort=recommended`;
-
-// const options3 = {
-//   method: 'GET',
-//   headers: {
-//     'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-//     'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-//   }
-// };
-
-// const response3 =  await fetch(url3, options3)
-// const result = await response3.json()
-// console.log(data1.data);
-// res.render("places",{placesss,names:req.data.name,images:req.data.image,data : location_id.data,result: result.data});
-
-// }catch(e){
-// console.log(e);
-// }
-// 	//Attraction
-
-//   // fetch(url, options)
-//   // 	.then(res => res.json())
-// // 	.then(json => console.log(json))
-// // 	.catch(err => console.error('error:' + err));
-//   // console.log(placesss.image);
-//   // const fetch = require('node-fetch');
-
-//   // const url = `https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchLocation?query=${category.namee}`;
-
-//   // const options = {
-  //   //   method: 'GET',
-  //   //   headers: {
-//   //     'X-RapidAPI-Key': 'f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b',
-//   //     'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-//   //   }
-//   // };
-
-// // fetch(url, options)
-// // 	.then(res => res.json())
-// // 	.then(json =>  console.log(json))
-// //   .then((data)=> res.render("places",{placesss,data}))
-// // 	.catch(err => console.error('error:' + err));
-//   // console.log(placesss);
-
-// // const url1 = `https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchLocation?query=${category.namee}`;
-
-// // const options1 = {
-// //   method: 'GET',
-// //   headers: {
-  // //     'X-RapidAPI-Key': '7611234a50msh732a7ada9e7edb9p1aa68djsnd0e23ba84536',
-// //     'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-// //   }
-// // };
-
-// // fetch(url1, options1)
-// // 	.then(res => res.json())
-// // 	.then(json => console.log(json))
-// // 	.catch(err => console.error('error:' + err));
-// });
 
 route.get("/filter", async (req, res) => {
   //North
@@ -413,12 +316,32 @@ route.get("/filter", async (req, res) => {
   const africa = await response1.json();
   res.render("filter", { asia, africa });
 });
-
+//Advisor apis
 route.get("/advisor/:id", check, async (req, res) => {
   const id = req.params.id;
   const name = req.params.namee;
   const category = await Category.findById(id);
   const place = category.namee;
+  console.log(place);
+
+  // const blog = await Blogs.find().limit(-1);
+  // console.log(blog);
+  // Get the total count of documents in the collection
+const count = await Blogs.countDocuments();
+console.log(count);
+// Generate a random number between 0 and the total count of documents
+const randomIndex = Math.floor(Math.random() * count);
+console.log(randomIndex);
+
+// Use the findOne() method to retrieve a single document at a random index
+const randomBlog = await Blogs.aggregate([
+  { $sort: { _id: -1 } },
+  { $skip: randomIndex },
+  { $limit: 3 }
+]);
+const bloguserid = randomBlog.userid;
+console.log(randomBlog,"THis are random blogs");
+
   //Searching Hotels
 
   //Open Trip Map API
@@ -426,7 +349,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b", //change1
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //change1
       "X-RapidAPI-Host": "opentripmap-places-v1.p.rapidapi.com",
     },
   };
@@ -434,12 +357,13 @@ route.get("/advisor/:id", check, async (req, res) => {
   const data = await response.json();
   const lat = data.lat;
   const lon = data.lon;
+  console.log(lon);
   const url1 = `https://opentripmap-places-v1.p.rapidapi.com/en/places/radius?radius=5000&lon=${lon}&lat=${lat}&kinds=natural`;
   // console.log(lat)
   const options1 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b", //change2
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //change2
       "X-RapidAPI-Host": "opentripmap-places-v1.p.rapidapi.com",
     },
   };
@@ -454,7 +378,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options2 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74",
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed",
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -470,13 +394,13 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options3 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change5
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //change5
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
   const response3 = await fetch(url3, options3);
   const hotel = await response3.json();
-  // console.log(hotel.data);
+  // console.log(hotel.data); //hotel data
 
   //Getting lat $ Long //Open Trip Map
   const url5 = `https://opentripmap-places-v1.p.rapidapi.com/en/places/geoname?name=${category.namee}&country=IN`;
@@ -484,7 +408,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options5 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f6e6cc3526mshd177f7ed9442d41p100e48jsn6d00b4a7ea6b",
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed",
       "X-RapidAPI-Host": "opentripmap-places-v1.p.rapidapi.com",
     },
   };
@@ -498,7 +422,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options4 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change5 //Attractions
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //change5 //Attractions
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -525,7 +449,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options6 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //Free Images
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //Free Images
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -538,7 +462,7 @@ route.get("/advisor/:id", check, async (req, res) => {
   const options9 = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //change4
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //change4
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -558,6 +482,7 @@ route.get("/advisor/:id", check, async (req, res) => {
     location: location_id.data[0],
     image: location_img.data,
     freeimages,
+    blogs:randomBlog,
     lodging: lodging.data,
   });
   //Hotels Best
@@ -599,7 +524,7 @@ route.get("/hotel/detail/:id", check, async (req, res) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "a856ca1c7fmsh09f7a19da3c4b0ep13105ejsn20ee4fbe0a74", //Getting Hotel Details
+      "X-RapidAPI-Key": "8d173a7072msh79eb70743361985p1dcd85jsnbb8c8b01a0ed", //Getting Hotel Details
       "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
     },
   };
@@ -698,35 +623,54 @@ route.get("/profile", check, async(req, res)=>{
   const number = req.data.phone;
   const name = "mumbai";
   const count = await Blogs.countDocuments({ userid:user_id });
+  const likes = items1.items.length;
 // console.log(`User with id ${user_id} has ${count} blog posts`);
-  console.log(uploads);
+  console.log(likes,"Thi is Liked Contnent");
   res.render("profile", {
     names: req.data.name,
     images: req.data.image,
     email,
     number,
     likes:items1,
+    likescount:likes,
     blogs:count,
     blogupload : blogs,
     likedata:items1.items
   });
 });
 
-route.get("/view-liked-posts",check,async(req,res)=>{
+route.get("/view-liked-posts", check, async (req, res) => {
   const user_id = req.data._id;
-  const galleryids = req.data.gallerylike; //getting the galleryid from user database
-  // const user_id = mongoose.Types.ObjectId(req.data._id)
-//  console.log(galleryids);
- const galleryid = await UserLike.find({_id:galleryids})
-  console.log(galleryid);
-  const items1 = galleryid[0];
-  console.log(items1);
-  // res.redirect("/");
-  res.render("viewliked",{likes:items1,likedata:items1.items});
+  const blogsuploaded = await Blogs.find({ userid: user_id });
+  const blogArray = Object.values(blogsuploaded);
+  console.log(blogArray);
+  res.render("viewliked", { blogs: blogArray });
 });
 
+
 route.post("/view-liked-posts",check,async(req,res)=>{
-  res.render("viewliked",{userlike});
+//   const user_id = req.data._id;
+//   // const galleryids = req.data.gallerylike; //getting the galleryid from user database
+//   // const user_id = mongoose.Types.ObjectId(req.data._id)
+// //  console.log(galleryids);
+//  const blogsuploaded = await Blogs.findOne({userid:user_id})
+  res.render("viewliked",{blogs:blogsuploaded});
+});
+// route.get("/delete-blog/:id",async(req,res)=>{
+//   const id = req.params.id;
+// console.log("reached this route");
+// });
+// Route to delete a blog
+route.get('/delete-blog/:id', async (req, res) => {
+  const blogId = req.params.id;
+  try {
+    const deletedBlog = await Blogs.findByIdAndDelete({_id:blogId});
+    console.log(deletedBlog);
+    res.render("myblogs");
+  } catch (error) {
+    console.log(error);
+    res.redirect('/blogs');
+  }
 });
 
 route.get("/category/:id", async (req, res, next) => {
@@ -958,10 +902,18 @@ route.post("/login", async(req, res)=>{
   });
 });
 
-route.post('/search',async(req, res) => {
+route.post('/search', async (req, res) => {
   const query = req.body.search;
-  console.log(query);
-  res.render('')
+  try {
+    // Use Mongoose to search for documents in the Blogs collection that match the user's search query
+    const results = await Blogs.find({ $text: { $search: query } });
+
+    // Pass the search results as a variable to the myblogs view
+    res.render('myblogs', { results: results });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
 });
 
 module.exports = {route,check};

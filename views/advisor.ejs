@@ -32,7 +32,7 @@
         <i class="icon-search"></i>
       </div>
       <nav>
-        <div>
+        <!-- <div>
           <i class="icon-plus_c"></i>
           <p>Publish</p>
         </div>
@@ -43,7 +43,7 @@
         <div>
           <i class="icon-heart"></i>
           <p>Travel</p>
-        </div>
+        </div> -->
         <button id="openForm">Connect-us</button>
       </nav>
     </div>
@@ -272,7 +272,7 @@
         <div>
           <h3>Restro</h3>
           <p class="description">
-            Bistrots et bars typiques, et plus encore à <%=location.result_object.name%>.
+            Best Restaurants's to visit in <%=location.result_object.name%>.
           </p>
           <p class="view-all-cards">Read More</p>
         </div>
@@ -320,61 +320,34 @@
       </div>
 
       <div class="guide-articles">
+        <% if(blogs !== undefined){ %>
+        <% blogs.forEach(function(blogs,index) {%>
         <div>
-          <img src="/assets/img/musee-de-montmartre.jpg" alt="description" />
-          <img src="/assets/img/eatwith.jpg" alt="description" />
+          <img src="<%=blogs.image%>" alt="description" />
+          <img src="<%=blogs.profileimage%>" alt="description" />
           <div>
-            <p class="author-guide">Par Eatwith</p>
-            <h4>Best summer things to do in <%=location.result_object.name%> | Eatwith</h4>
+            <p class="author-guide"><%=blogs.username%></p>
+            <h4><%=blogs.blogTitle%> | <%=blogs.blogCountry%></h4>
             <p class="guide-description">
-              Eatwith host Elodie is a private tour guide in <%=location.result_object.name%>, offering
-              all sorts of tours for small groups, from fashion to food...
+              <%=blogs.blogDescription.slice(0, 100)%>...
             </p>
-            <i class="icon-heart_fill"></i>
-            <p class="articles-number">36 articles</p>
+            <!-- <i class="icon-heart_fill"></i> -->
+            <p class="articles-number"><%=blogs.blogStay%></p>
           </div>
         </div>
-        <div>
-          <img src="/images/card2img.jpg" alt="description" />
-          <img src="/assets/img/gabigabtravel.jpg" alt="description" />
-          <div>
-            <p class="author-guide">Par gabigabtravel</p>
-            <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
-            <p class="guide-description">
-              Avec : Les Catacombes De <%=location.result_object.name%>, Parc Montsouris, Le Tournesol
-              cafe, Fondation Cartier pour l'art contemporain, Gare ...
-            </p>
-            <i class="icon-heart_fill"></i>
-            <p class="articles-number">125 articles</p>
-          </div>
-        </div>
-        <div>
-          <img src="/assets/img/catacombes.jpg" alt="description" />
-
-          <img src="/assets/img/topito-com.jpg" alt="description" />
-          <div>
-            <p class="author-guide">Par Topito</p>
-            <h4>Top 10 des choses à faire ou à voir dans le 14ème</h4>
-            <p class="guide-description">
-              Avec : Les Catacombes De <%=location.result_object.name%>, Parc Montsouris, Le Tournesol
-              cafe, Fondation Cartier pour l'art contemporain, Gare ...
-            </p>
-            <i class="icon-heart_fill"></i>
-            <p class="articles-number">10 articles</p>
-          </div>
-        </div>
-      </div>
+        <% }); %>
+        <% } ;%>
     </div>
   </section>
 
   <!-- ---------- SECTION 4 ---------- -->
 
-  <section class="section-4">
+  <!-- <section class="section-4">
     <div class="container">
       <img src="/assets/img/forum.svg" alt="description" />
       <div class="section-title">
         <div class="border-section-left"></div>
-        <h2>Dans les forums</h2>
+        <h2>In the forums</h2>
         <div class="border-section-right"></div>
       </div>
       <p class="view-all">Tout afficher</p>
@@ -412,7 +385,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ---------- SECTION 5 ---------- -->
 
@@ -420,18 +393,18 @@
     <div class="container">
       <div class="section-title">
         <div class="border-section-left"></div>
-        <h2>Plus de choix à <%=location.result_object.name%></h2>
+        <h2>More choices in <%=location.result_object.name%></h2>
         <div class="border-section-right"></div>
       </div>
 
-      <h3 class="title">Bars</h3>
+      <!-- <h3 class="title">Bars</h3>
 
       <div class="carrousel">
         <div>
           <div class="carrousel-images">
             <img src="/assets/img/frog-hop-house.jpg" alt="Verjus" />
           </div>
-        <!-- <div class="favorite"></div> -->
+       <div class="favorite"></div> 
 
           <h4>Verjus</h4>
           <div class="carrousel-reviews">
@@ -442,15 +415,15 @@
             <i class="icon-bubble_rating_full_refresh"></i>
             <p>140 000 avis</p>
           </div>
-          <!-- <p class="item-description">
+           <p class="item-description">
             €€€€ • Française, Européenne, Moderne
-          </p> -->
+          </p> 
         </div>
         <div>
           <div class="carrousel-images">
             <img src="/assets/img/assiette-degustation.jpg" alt="Verjus" />
           </div>
-          <!-- <--  <div class="favorite"></div> --> 
+          
 
           <h4>Verjus</h4>
           <div class="carrousel-reviews">
@@ -468,7 +441,7 @@
         <div>
           <div class="carrousel-images">
             <img src="/assets/img/vache-vignes.jpg" alt="Faubourg" />
-            <!--  <div class="favorite"></div> --> 
+            
           </div>
           <h4>Le 114 Faubourg</h4>
           <div class="carrousel-reviews">
@@ -484,7 +457,7 @@
         <div>
           <div class="carrousel-images">
             <img src="/assets/img/compas.jpg" alt="Frenchie" />
-            <!-- <div class="favorite"></div> -->
+       
           </div>
           <h4>Frenchie</h4>
           <div class="carrousel-reviews">
@@ -501,7 +474,7 @@
         <div>
           <div class="carrousel-images">
             <img src="/assets/img/abq-paris.jpg" alt="Frenchie" />
-            <!-- <div class="favorite"></div> --> 
+            
             <i class="icon-arrow_right"></i>
           </div>
           <h4>Frenchie</h4>
@@ -515,7 +488,7 @@
           </div>
           <p class="item-description"></p>
         </div>
-      </div>
+      </div> -->
 
       <h3 class="title">Things to Do in</h3>
       <div class="carrousel">

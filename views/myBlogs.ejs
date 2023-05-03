@@ -178,7 +178,7 @@
             <div class="row">
                 <div class="d-flex justify-content-between my-5">
                     <h1>
-                        My Blogs
+                        Blogs
                     </h1>
                     
                     <div class="form-group">
@@ -203,12 +203,12 @@
             <div class="container-form">
               <i id="closeForm" class="icon-times"></i>
               <img src="/images/logonew.JPG" alt="logo" />
-              <p>Welcome ; Wanna Connect us then fill out this simple survey form !</p>
+              <p>Welcome, Connect us!</p>
               <form id="contactForm" class="contact-form">
                 <label for="email">Your Name</label>
                 <input type="text" name="name" id="email" required placeholder="Your Full Name " />
                 <label for="password">Comment</label>
-                <input type="text" name="comment"  id="travel" required placeholder="Places you have visited till now...">
+                <input type="text" name="comment"  id="travel" required placeholder="Enter your comment...">
                 <!-- <label for="email">Write your Question...</label>
                 <input type="text" name="whyconnect"  id="question" required placeholder="Write your query here"> -->
                 <button type="submit">Submit</button>
@@ -221,7 +221,7 @@
               </p>
             </div>
           </section>
-  
+
     </body>
 </html>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
@@ -277,7 +277,6 @@
                         </figcaption>
                     </figure>
                 </div> 
-                
                 `
                 innerHtml+=str;
             });
@@ -314,7 +313,7 @@
                                 </figure> 
                             </div>
                             <div class="col-md-4">
-                                <div class="row rows-col-3">
+                                <div class="row rows-col-5">
                                     <div class="col">
                                         <strong class="card-title">Date</strong>
                                         <p class="card-text">
@@ -327,7 +326,7 @@
                                             ${details.blogBudget}
                                         </p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md-8">
                                         <strong class="card-title">Stay</strong>
                                         <p class="card-text">
                                             ${details.blogStay}
@@ -335,13 +334,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <strong class="card-title">Category</strong>
                                         <p class="card-text">
                                             ${details.blogCategory}
                                         </p>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">
                                         <strong class="card-title">Transport</strong>
                                         <p class="card-text">
                                             ${details.blogTransport}
@@ -386,8 +385,8 @@ async function fetchComments(blogid) {
     const commentDiv = document.createElement('div');
     commentDiv.classList.add('comment');
     commentDiv.innerHTML = `
-    <h4> Name:<strong> ${comment.name}</strong></h4>
-      <p>comment: ${comment.comment}</p>
+    <h4> <strong> ${comment.name}</strong></h4>
+      <p> ${comment.comment}</p>
     `;
     commentsContainer.appendChild(commentDiv);
   });

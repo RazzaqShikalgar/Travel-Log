@@ -15,9 +15,13 @@ exports.insert = async(req, res, next) => {
         let data = JSON.parse(JSON.stringify(req.body));
         const result = await cloudinary.uploader.upload(req.file.path);
         const userid = req.data._id;
+        const profileimage = req.data.image;
+        const username = req.data.name;
         console.log(userid,"This is user id");
         data.image = result.secure_url;
         data.userid = userid;
+        data.profileimage = profileimage,
+        data.username = username,
         console.log(result.secure_url,"This is the link bruhh");
         let newblogs = new blogs(data);
         await newblogs.save();

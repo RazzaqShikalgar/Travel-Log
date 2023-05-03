@@ -80,6 +80,7 @@ app.get('/blogs/:blogid/comments', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 app.post("/blog-comment",check,async(req,res)=>{
   const {name,comment,blogid} = req.body;
   console.log("This is your blog id",blogid);

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const blogSchema =  new mongoose.Schema({
+    profileimage:String,
+    username:String,
     userid:String,
     blogTitle:{
     type:String,
